@@ -1,17 +1,164 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <header>
-            <meta charset="UTF-8">
-            <title>Pagina LOL<title>
-            <nav>
-                <h2>prueba</h2>
-            </nav>
-        </header>
-    </head>
-    <body>
-        <H1>Hello Fran</H1>
-        <nav>prueba</nav>
-        
-    </body>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Portfolio - Fran</title>
+    <style>
+        :root{ --accent:#2b6cb0; --muted:#6b7280; --bg:#f7fafc }
+        body{ font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; margin:0; background:var(--bg); color:#111 }
+        header{ background:#fff; border-bottom:1px solid #e6e9ee; position:sticky; top:0; z-index:10 }
+        .tabs{ max-width:1000px; margin:0 auto; display:flex; align-items:center; padding:12px 16px }
+        .tabs ul{ list-style:none; display:flex; gap:8px; margin:0; padding:0 }
+        .tabs .brand{ margin-right:auto; font-weight:700; color:var(--accent) }
+        .tab{ padding:8px 12px; border-radius:8px; cursor:pointer; color:var(--muted) }
+        .tab.active{ background:linear-gradient(90deg,#e6f0ff,#f0f6ff); color:var(--accent); box-shadow:0 1px 0 rgba(0,0,0,.03) }
+        main{ max-width:1000px; margin:28px auto; padding:0 16px }
+        .hero{ background:#fff; padding:28px; border-radius:10px; box-shadow:0 6px 18px rgba(11,15,30,0.04) }
+        .panels{ margin-top:18px }
+        .panel{ display:none }
+        .panel.active{ display:block }
+        .projects{ display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:16px }
+        .card{ background:#fff; padding:18px; border-radius:10px; box-shadow:0 6px 18px rgba(11,15,30,0.04) }
+        .card h3{ margin:0 0 8px 0 }
+        .card p{ color:var(--muted); margin:0 0 12px 0 }
+        .actions{ display:flex; gap:8px }
+        .btn{ text-decoration:none; padding:8px 12px; border-radius:8px; background:var(--accent); color:#fff; font-weight:600 }
+        .btn.secondary{ background:#eef2ff; color:var(--accent); border:1px solid rgba(43,108,176,0.08) }
+        form{ background:#fff; padding:18px; border-radius:10px; box-shadow:0 6px 18px rgba(11,15,30,0.04) }
+        label{ display:block; margin-bottom:6px; font-size:14px }
+        input, textarea{ width:100%; padding:10px; border-radius:8px; border:1px solid #e6e9ee; margin-bottom:12px }
+        footer{ text-align:center; color:var(--muted); margin:40px 0 }
+        /* Estilos para la nueva sección de redes sociales */
+        .socials-section{ background:#fff; padding:18px; border-radius:10px; box-shadow:0 6px 18px rgba(11,15,30,0.04); margin-top:18px }
+        .socials-section h2{ margin:0 0 12px 0 }
+        .social-links{ display:flex; flex-wrap:wrap; gap:12px }
+        .social{ display:inline-block; padding:10px 16px; border-radius:8px; background:var(--accent); color:#fff; font-weight:500; text-decoration:none }
+        .social:hover{ background:rgba(43,108,176,0.8) }
+        @media (max-width:600px){ .tabs{ padding:10px } }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="tabs" aria-label="Navegación principal">
+            <div class="brand">Fran - Portfolio</div>
+            <ul>
+                <li class="tab active" data-target="inicio">Pestañas</li>
+                <li class="tab" data-target="proyectos">Proyectos</li>
+                <li class="tab" data-target="formulario">Formulario</li>
+                <li class="tab" data-target="otros">Otros</li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section id="inicio" class="panel active hero">
+            <h1>Hola, soy Fran</h1>
+            <p style="color:var(--muted)">Bienvenido a mi portfolio. Usa las pestañas del menú para ver proyectos, enviar un mensaje o ver otras secciones.</p>
+        </section>
+
+        <div class="panels">
+            <section id="proyectos" class="panel">
+                <h2>Proyectos</h2>
+                <p style="color:var(--muted)">Aquí tienes dos ejemplos. Los enlaces apuntan a carpetas locales: <code>./proyecto1/</code> y <code>./proyecto2/</code>. Crea en esas carpetas un archivo <code>index.html</code> para que se abran correctamente.</p>
+                <div class="projects">
+                    <article class="card">
+                        <h3>Proyecto 1</h3>
+                        <p>Demo simple de proyecto 1. Enlace a la carpeta local del proyecto.</p>
+                        <div class="actions">
+                            <a href="./proyecto1/index.html" class="btn" target="_self">Abrir proyecto 1</a>
+                            <a href="./proyecto1/index.html" class="btn secondary" onclick="redirectLater(event,'./proyecto1/index.html',2000)">Abrir con redirección 2s</a>
+                        </div>
+                    </article>
+
+                    <article class="card">
+                        <h3>Proyecto 2</h3>
+                        <p>Demo simple de proyecto 2. Enlace a la carpeta local del proyecto.</p>
+                        <div class="actions">
+                            <a href="./proyecto2/index.html" class="btn" target="_self">Abrir proyecto 2</a>
+                            <a href="./proyecto2/index.html" class="btn secondary" onclick="redirectLater(event,'./proyecto2/index.html',2000)">Abrir con redirección 2s</a>
+                        </div>
+                    </article>
+                </div>
+            </section>
+
+            <section id="formulario" class="panel">
+                <h2>Formulario de contacto</h2>
+                <form id="contactForm">
+                    <label for="name">Nombre</label>
+                    <input id="name" name="name" type="text" placeholder="Tu nombre" required>
+
+                    <label for="email">Correo</label>
+                    <input id="email" name="email" type="email" placeholder="tu@correo.com" required>
+
+                    <label for="message">Mensaje</label>
+                    <textarea id="message" name="message" rows="5" placeholder="Escribe tu mensaje..."></textarea>
+
+                    <button type="submit" class="btn">Enviar</button>
+                </form>
+            </section>
+
+            <section id="otros" class="panel">
+                <h2>Otros</h2>
+                <p style="color:var(--muted)">Información adicional, enlaces, tecnologías, etc.</p>
+                <ul>
+                    <li>HTML / CSS / JS</li>
+                    <li>Proyectos educativos</li>
+                </ul>
+            </section>
+
+            <!-- Sección añadida: redes sociales y enlaces útiles -->
+            <section class="socials-section">
+                <h2>Sígueme y enlaces útiles</h2>
+                <p style="color:var(--muted)">Conecta conmigo o accede a tus herramientas habituales:</p>
+                <div class="social-links">
+                    <a href="mailto:tu.email@gmail.com" class="social" title="Gmail">📧 Gmail</a>
+                    <a href="https://classroom.google.com/" class="social" target="_blank" rel="noopener">🎓 Classroom</a>
+                    <a href="https://drive.google.com/" class="social" target="_blank" rel="noopener">📁 Drive</a>
+                    <a href="https://github.com/" class="social" target="_blank" rel="noopener">🐙 GitHub</a>
+                    <a href="https://www.linkedin.com/" class="social" target="_blank" rel="noopener">🔗 LinkedIn</a>
+                </div>
+                <p style="margin-top:8px;color:var(--muted);font-size:14px">(Cambia los enlaces por tus perfiles personales cuando quieras)</p>
+            </section>
+
+            <footer>
+                <small>Portfolio creado por Fran • Usa las pestañas para navegar</small>
+            </footer>
+        </div>
+    </main>
+
+    <script>
+        // Tabs behavior
+        document.querySelectorAll('.tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+                tab.classList.add('active');
+                const target = tab.getAttribute('data-target');
+                document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+                const panel = document.getElementById(target);
+                if(panel) panel.classList.add('active');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        });
+
+        // Redirige tras un retraso (para demostrar redirección)
+        function redirectLater(event, url, ms){
+            event.preventDefault();
+            const original = event.currentTarget;
+            const prev = original.textContent;
+            original.textContent = 'Redirigiendo...';
+            setTimeout(() => { window.location.href = url }, ms || 1500);
+        }
+
+        // Form handling (ejemplo: no envía nada realmente)
+        document.getElementById('contactForm').addEventListener('submit', function(e){
+            e.preventDefault();
+            const data = new FormData(this);
+            console.log('Contacto enviado:', Object.fromEntries(data.entries()));
+            alert('Mensaje enviado (demo). Revisa la consola.');
+            this.reset();
+            // Cambiar a pestaña 'Pestañas' tras enviar
+            document.querySelector('.tab[data-target="inicio"]').click();
+        });
+    </script>
+</body>
 </html>

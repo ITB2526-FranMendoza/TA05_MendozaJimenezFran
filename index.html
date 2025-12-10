@@ -4,137 +4,94 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Portfolio - Fran</title>
-    <!-- Enlazar hoja de estilos externa -->
     <link rel="stylesheet" href="./styles.css">
 </head>
 <body>
     <header>
-        <nav class="tabs" aria-label="Navegación principal">
-            <div class="brand"><!-- Logo/text -->
-                <span class="logo">Fran</span>
-                <span class="brand-text"> - Portfolio</span>
+        <div class="topbar">
+            <button id="hamburger" class="hamburger" aria-label="Abrir menú">☰</button>
+            <div class="brand"><span class="logo">Fran</span><span class="brand-text"> - Portfolio</span></div>
+            <div class="actions-right">
+                <button id="darkToggle" class="icon-btn" title="Modo oscuro">🌙</button>
             </div>
+        </div>
+        <!-- Sidebar que se abre desde la izquierda dentro del body -->
+        <nav id="sidebar" class="sidebar" aria-hidden="true">
+            <button id="closeSidebar" class="close-btn" aria-label="Cerrar menú">✕</button>
             <ul>
-                <li class="tab active" data-target="inicio">Pestañas</li>
-                <li class="tab" data-target="proyectos">Proyectos</li>
-                <li class="tab" data-target="formulario">Formulario</li>
-                <li class="tab" data-target="otros">Otros</li>
+                <li><a href="/index.html">Inicio</a></li>
+                <li><a href="./proyecto1/index.html">Proyecto 1</a></li>
+                <li><a href="./proyecto2/index.html">Proyecto 2</a></li>
+                <li><a href="./listado.html">Listado de proyectos</a></li>
+                <li><a href="./formulario.html">Formulario</a></li>
             </ul>
         </nav>
     </header>
+
     <main>
-        <section id="inicio" class="panel active hero">
+        <section class="hero">
             <h1>Hola, soy Fran</h1>
-            <p class="muted">Bienvenido a mi portfolio. Usa las pestañas del menú para ver proyectos, enviar un mensaje o ver otras secciones.</p>
+            <p class="muted">Bienvenido a mi portfolio. Aquí tienes dos proyectos destacados. Pulsa en ellos para ver la página de detalle.</p>
         </section>
 
-        <div class="panels">
-            <section id="proyectos" class="panel">
-                <h2>Proyectos</h2>
-                <p class="muted">Aquí tienes dos ejemplos. Los enlaces apuntan a carpetas locales: <code>./proyecto1/</code> y <code>./proyecto2/</code>. Crea en esas carpetas un archivo <code>index.html</code> para que se abran correctamente.</p>
-                <div class="projects">
-                    <article class="card">
-                        <h3>Proyecto 1</h3>
-                        <p class="muted">Demo simple de proyecto 1. Enlace a la carpeta local del proyecto.</p>
-                        <div class="actions">
-                            <a href="./proyecto1/index.html" class="btn" target="_self">Abrir proyecto 1</a>
-                            <a href="./proyecto1/index.html" class="btn secondary" onclick="redirectLater(event,'./proyecto1/index.html',2000)">Abrir con redirección 2s</a>
-                        </div>
-                    </article>
-
-                    <article class="card">
-                        <h3>Proyecto 2</h3>
-                        <p class="muted">Demo simple de proyecto 2. Enlace a la carpeta local del proyecto.</p>
-                        <div class="actions">
-                            <a href="./proyecto2/index.html" class="btn" target="_self">Abrir proyecto 2</a>
-                            <a href="./proyecto2/index.html" class="btn secondary" onclick="redirectLater(event,'./proyecto2/index.html',2000)">Abrir con redirección 2s</a>
-                        </div>
-                    </article>
+        <div class="projects" id="projectsGrid">
+            <article class="card project-card">
+                <h3>Proyecto 1</h3>
+                <p class="muted">Resumen breve del proyecto 1. Tecnología: HTML, CSS, JS. Haz click para ver más.</p>
+                <div class="card-actions">
+                    <a href="./proyecto1/index.html" class="btn">Ver detalle</a>
                 </div>
-            </section>
+            </article>
 
-            <section id="formulario" class="panel">
-                <h2>Formulario de contacto</h2>
-                <form id="contactForm">
-                    <label for="name">Nombre</label>
-                    <input id="name" name="name" type="text" placeholder="Tu nombre" required>
-
-                    <label for="email">Correo</label>
-                    <input id="email" name="email" type="email" placeholder="tu@correo.com" required>
-
-                    <label for="message">Mensaje</label>
-                    <textarea id="message" name="message" rows="5" placeholder="Escribe tu mensaje..."></textarea>
-
-                    <button type="submit" class="btn">Enviar</button>
-                </form>
-            </section>
-
-            <section id="otros" class="panel">
-                <h2>Otros</h2>
-                <p class="muted">Información adicional, enlaces, tecnologías, etc.</p>
-                <ul>
-                    <li>HTML / CSS / JS</li>
-                    <li>Proyectos educativos</li>
-                </ul>
-            </section>
-
-            <!-- Sección añadida: redes sociales y enlaces útiles (como aside) -->
-            <aside class="socials-section">
-                <h2>Sígueme y enlaces útiles</h2>
-                <p class="muted">Conecta conmigo o accede a tus herramientas habituales:</p>
-                <div class="social-links">
-                    <a href="mailto:tu.email@gmail.com" class="social" title="Gmail">📧 Gmail</a>
-                    <a href="https://classroom.google.com/" class="social" target="_blank" rel="noopener">🎓 Classroom</a>
-                    <a href="https://drive.google.com/" class="social" target="_blank" rel="noopener">📁 Drive</a>
-                    <a href="https://github.com/" class="social" target="_blank" rel="noopener">🐙 GitHub</a>
-                    <a href="https://www.linkedin.com/" class="social" target="_blank" rel="noopener">🔗 LinkedIn</a>
+            <article class="card project-card">
+                <h3>Proyecto 2</h3>
+                <p class="muted">Resumen breve del proyecto 2. Tecnología: JavaScript interactivo. Haz click para ver más.</p>
+                <div class="card-actions">
+                    <a href="./proyecto2/index.html" class="btn">Ver detalle</a>
                 </div>
-                <p class="note">(Cambia los enlaces por tus perfiles personales cuando quieras)</p>
-            </aside>
-
+            </article>
         </div>
+
+        <aside class="socials-section">
+            <h2>Sígueme y enlaces útiles</h2>
+            <div class="social-links">
+                <a href="mailto:tu.email@gmail.com" class="social" title="Gmail">📧 Gmail</a>
+                <a href="https://classroom.google.com/" class="social" target="_blank" rel="noopener">🎓 Classroom</a>
+                <a href="https://drive.google.com/" class="social" target="_blank" rel="noopener">📁 Drive</a>
+                <a href="https://github.com/" class="social" target="_blank" rel="noopener">🐙 GitHub</a>
+                <a href="https://www.linkedin.com/" class="social" target="_blank" rel="noopener">🔗 LinkedIn</a>
+            </div>
+            <p class="note">(Cambia los enlaces por tus perfiles personales cuando quieras)</p>
+        </aside>
     </main>
 
-    <!-- Footer único de la página principal -->
     <footer>
-        <small>© 2025 Fran. Portfolio creado por Fran • Usa las pestañas para navegar</small>
-        <div class="footer-links">
-            <a href="mailto:tu.email@gmail.com">tu.email@gmail.com</a> • <a href="https://github.com/">GitHub</a>
-        </div>
+        <small>© 2025 Fran. Portfolio • <a href="mailto:tu.email@gmail.com">tu.email@gmail.com</a></small>
     </footer>
 
     <script>
-        // Tabs behavior
-        document.querySelectorAll('.tab').forEach(tab => {
-            tab.addEventListener('click', () => {
-                document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-                tab.classList.add('active');
-                const target = tab.getAttribute('data-target');
-                document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
-                const panel = document.getElementById(target);
-                if(panel) panel.classList.add('active');
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-            });
+        // Hamburguesa: abre/close sidebar desde la izquierda
+        const hamburger = document.getElementById('hamburger');
+        const sidebar = document.getElementById('sidebar');
+        const closeSidebar = document.getElementById('closeSidebar');
+        hamburger.addEventListener('click', () => { sidebar.classList.toggle('open'); sidebar.setAttribute('aria-hidden', !sidebar.classList.contains('open')); });
+        closeSidebar.addEventListener('click', () => { sidebar.classList.remove('open'); sidebar.setAttribute('aria-hidden', 'true'); });
+
+        // Modo oscuro: botón que persiste en sessionStorage
+        const darkToggle = document.getElementById('darkToggle');
+        function applyDarkFromStorage(){
+            if(sessionStorage.getItem('modo-oscuro') === '1') document.body.classList.add('oscuro');
+        }
+        applyDarkFromStorage();
+        darkToggle.addEventListener('click', () => {
+            document.body.classList.toggle('oscuro');
+            sessionStorage.setItem('modo-oscuro', document.body.classList.contains('oscuro') ? '1' : '0');
         });
 
-        // Redirige tras un retraso (para demostrar redirección)
-        function redirectLater(event, url, ms){
-            event.preventDefault();
-            const original = event.currentTarget;
-            const prev = original.textContent;
-            original.textContent = 'Redirigiendo...';
-            setTimeout(() => { window.location.href = url }, ms || 1500);
-        }
-
-        // Form handling (ejemplo: no envía nada realmente)
-        document.getElementById('contactForm').addEventListener('submit', function(e){
-            e.preventDefault();
-            const data = new FormData(this);
-            console.log('Contacto enviado:', Object.fromEntries(data.entries()));
-            alert('Mensaje enviado (demo). Revisa la consola.');
-            this.reset();
-            // Cambiar a pestaña 'Pestañas' tras enviar
-            document.querySelector('.tab[data-target="inicio"]').click();
+        // Movimiento de tarjetas: aplicar transform con JS al pasar por encima
+        document.querySelectorAll('.project-card').forEach(card => {
+            card.addEventListener('mouseenter', () => { card.style.transform = 'rotateY(5deg) translateY(-6px)'; });
+            card.addEventListener('mouseleave', () => { card.style.transform = ''; });
         });
     </script>
 </body>

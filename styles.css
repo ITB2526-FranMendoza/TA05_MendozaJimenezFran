@@ -1,0 +1,93 @@
+/* Variables */
+:root{
+  --accent:#2b6cb0;
+  --accent-strong:#1f4f80;
+  --muted:#6b7280;
+  --bg:#f7fafc;
+  --card:#ffffff;
+  --text:#111;
+}
+
+/* Reset ligero */
+*{box-sizing:border-box}
+body{
+  font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  margin:0; background:var(--bg); color:var(--text); -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
+}
+
+/* Topbar / header */
+.topbar{
+  display:flex; align-items:center; gap:12px; padding:12px 16px; background:var(--card); border-bottom:1px solid #e6e9ee; position:sticky; top:0; z-index:40;
+}
+.brand{ font-weight:700; color:var(--accent); display:flex; align-items:center; gap:8px }
+.logo{ font-size:18px }
+.actions-right{ margin-left:auto; display:flex; gap:8px; align-items:center }
+.icon-btn{ background:transparent; border:0; cursor:pointer; font-size:18px }
+
+/* Hamburger / sidebar */
+.hamburger{ background:transparent; border:0; font-size:20px; cursor:pointer }
+.sidebar{
+  position:fixed; left:-320px; top:0; width:300px; height:100vh; background:var(--card); box-shadow:4px 0 18px rgba(11,15,30,0.08); padding:16px; transition:left .28s ease; z-index:50; overflow:auto;
+}
+.sidebar.open{ left:0 }
+.sidebar .close-btn{ display:block; background:transparent; border:0; font-size:18px; margin-bottom:8px; cursor:pointer }
+.sidebar ul{ list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:6px }
+.sidebar a{ display:block; padding:10px 12px; color:var(--accent-strong); text-decoration:none; border-radius:8px }
+.sidebar a:hover{ background:linear-gradient(90deg, #eef6ff, #f7fbff) }
+
+/* Main layout */
+main{ max-width:1000px; margin:28px auto; padding:0 16px }
+.hero{ background:var(--card); padding:22px; border-radius:10px; box-shadow:0 6px 18px rgba(11,15,30,0.04) }
+.muted{ color:var(--muted) }
+
+/* Projects grid */
+.projects{ display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:18px; margin-top:18px }
+.card{ background:var(--card); padding:18px; border-radius:10px; box-shadow:0 6px 18px rgba(11,15,30,0.04); transition:transform .22s ease, box-shadow .22s ease }
+.project-card{ cursor:pointer; perspective:800px }
+.project-card:hover{ transform: translateY(-6px); box-shadow:0 18px 40px rgba(11,15,30,0.08) }
+.project-card .card-inner{ transition:transform .35s ease; transform-style:preserve-3d }
+.project-card:hover .card-inner{ transform:rotateY(5deg) }
+.card h3{ margin:0 0 8px 0 }
+.card p{ color:var(--muted); margin:0 0 12px 0 }
+.card-actions{ display:flex; gap:8px }
+
+/* Buttons */
+.btn{ display:inline-block; text-decoration:none; padding:8px 12px; border-radius:8px; background:var(--accent); color:#fff; font-weight:600 }
+.btn.secondary{ background:#eef2ff; color:var(--accent) }
+.btn:hover{ filter:brightness(.98) }
+
+/* Socials */
+.socials-section{ background:var(--card); padding:14px; border-radius:10px; box-shadow:0 6px 18px rgba(11,15,30,0.04); margin-top:18px }
+.social-links{ display:flex; flex-wrap:wrap; gap:10px }
+.social{ display:inline-flex; align-items:center; gap:8px; padding:8px 12px; border-radius:8px; background:var(--accent); color:#fff; text-decoration:none }
+.social:hover{ opacity:.95 }
+.note{ color:var(--muted); font-size:13px; margin-top:8px }
+
+/* Footer */
+footer{ text-align:center; color:var(--muted); margin:32px 0 }
+footer a{ color:var(--accent-strong); text-decoration:none }
+
+/* Form styles */
+form{ background:var(--card); padding:18px; border-radius:10px; box-shadow:0 6px 18px rgba(11,15,30,0.04); max-width:720px }
+label{ display:block; margin-bottom:6px; font-size:14px }
+input, textarea{ width:100%; padding:10px; border-radius:8px; border:1px solid #e6e9ee; margin-bottom:12px }
+textarea{ min-height:120px }
+
+/* Dark mode */
+body.oscuro{
+  --bg:#0f1720; --card:#0b1220; --text:#e6eef8; --muted:#9aa6bd; --accent:#6ea8ff; --accent-strong:#95c5ff;
+  background:var(--bg); color:var(--text);
+}
+body.oscuro .sidebar{ background:rgba(10,14,20,0.95) }
+body.oscuro .card, body.oscuro .hero, body.oscuro .socials-section, body.oscuro form{ background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)) }
+body.oscuro a, body.oscuro .brand{ color:var(--accent) }
+
+/* Responsive */
+@media (max-width:700px){
+  .projects{ grid-template-columns:1fr }
+  .sidebar{ width:85vw; left:-100vw }
+  .sidebar.open{ left:0 }
+  .topbar{ padding:10px }
+}
+
+@media (prefers-reduced-motion:reduce){ *{ transition:none!important } }

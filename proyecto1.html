@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Proyecto 1 - Fran</title>
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand"><span class="logo">Fran</span><span class="brand-text"> - Proyecto 1</span></div>
+    <div class="actions-right">
+      <a href="./index.html" class="btn secondary">Volver al portfolio</a>
+      <button id="darkToggle" class="icon-btn" title="Modo oscuro">🌙</button>
+    </div>
+  </header>
+
+  <main style="max-width:1000px;margin:28px auto;padding:0 16px;">
+    <article class="card" style="margin-bottom:18px;">
+      <h1>Proyecto 1 — Mini App de Galería</h1>
+      <p class="muted">Este proyecto es un ejemplo didáctico que muestra una galería simple con HTML/CSS y algo de JavaScript para la interactividad. Objetivo: presentar imágenes, descripción técnica y enlace a la demo del proyecto.</p>
+
+      <h3>Descripción corta</h3>
+      <p>Proyecto orientado a practicar layout responsive, interacción básica y organización de recursos. Ideal como primer proyecto para mostrar en el portfolio.</p>
+
+      <h4>Tecnologías</h4>
+      <ul>
+        <li>HTML5 / CSS3</li>
+        <li>JavaScript (interactividad mínima)</li>
+        <li>Imágenes de ejemplo</li>
+      </ul>
+
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin-top:12px;">
+        <figure>
+          <img src="https://picsum.photos/seed/proj1a/900/600" alt="Captura 1" style="width:100%;border-radius:8px;display:block;">
+          <figcaption class="muted" style="font-size:13px;margin-top:6px">Vista previa 1</figcaption>
+        </figure>
+
+        <figure>
+          <img src="https://picsum.photos/seed/proj1b/900/600" alt="Captura 2" style="width:100%;border-radius:8px;display:block;">
+          <figcaption class="muted" style="font-size:13px;margin-top:6px">Vista previa 2</figcaption>
+        </figure>
+      </div>
+
+      <div class="card-actions" style="margin-top:14px;">
+        <a href="./proyecto1_demo.html" class="btn">Abrir demo del proyecto</a>
+        <a href="https://github.com/" class="btn secondary" target="_blank" rel="noopener">Ver código (GitHub)</a>
+      </div>
+    </article>
+
+    <aside class="socials-section">
+      <h3>Contacto y enlaces</h3>
+      <div class="social-links" style="margin-top:8px;">
+        <a href="mailto:tu.email@gmail.com" class="social">📧 Gmail</a>
+        <a href="https://github.com/" class="social" target="_blank" rel="noopener">🐙 GitHub</a>
+      </div>
+    </aside>
+  </main>
+
+  <footer>
+    <small class="muted">© 2025 Fran • Proyecto 1</small>
+  </footer>
+
+  <script>
+    // Aplicar modo oscuro si ya estaba activo (usa la misma llave que la página principal)
+    function applyDarkFromStorage(){ if(sessionStorage.getItem('modo-oscuro') === '1') document.body.classList.add('oscuro'); }
+    applyDarkFromStorage();
+    const darkToggle = document.getElementById('darkToggle');
+    darkToggle.addEventListener('click', () => {
+      document.body.classList.toggle('oscuro');
+      sessionStorage.setItem('modo-oscuro', document.body.classList.contains('oscuro') ? '1' : '0');
+    });
+  </script>
+</body>
+</html>

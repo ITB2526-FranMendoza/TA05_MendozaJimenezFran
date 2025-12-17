@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Listado de proyectos - Fran</title>
+  <link rel="icon" type="image/png" href="logofran.jpg">
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <header>
+    <div class="topbar">
+      <img src="logofran.jpg" alt="Logo" class="logo-img" />
+      <div class="brand-text">Fran - Proyectos</div>
+      <nav class="topmenu" id="topmenu" aria-label="Menú principal">
+        <ul>
+          <li><a href="index.html">Inicio</a></li>
+          <li><a href="proyecto1.html">Proyecto 1</a></li>
+          <li><a href="proyecto2.html">Proyecto 2</a></li>
+          <li><a href="listadoproyecto.html">Listado</a></li>
+          <li><a href="formulario.html">Contacto</a></li>
+        </ul>
+      </nav>
+      <div class="actions-right">
+        <button id="langToggle" class="lang-btn" aria-label="Cambiar idioma" title="Cambiar idioma"><span class="flag">🇪🇸</span><span class="label">ES</span></button>
+        <button id="darkToggle" class="icon-btn" title="Modo oscuro">🌙</button>
+      </div>
+    </div>
+  </header>
+
+  <main style="max-width:1000px;margin:28px auto;padding:0 16px;">
+    <h1>Listado de proyectos</h1>
+    <p class="muted">Aquí tienes una vista clara y visual de los proyectos del grupo. Haz click en el primero para ir a su página de detalle.</p>
+    <div style="margin-bottom:18px;display:flex;justify-content:flex-end;">
+      <input id="projectSearch" type="search" placeholder="Buscar proyecto... / Search project..." style="max-width:340px;width:100%;padding:8px 12px;border-radius:8px;border:1px solid #e6e9ee;font-size:1rem;" aria-label="Buscar proyecto">
+    </div>
+    <div class="projects" id="projectsContainer" style="margin-top:18px;"></div>
+  </main>
+
+  <footer>
+    <small class="muted">© 2025 Fran • Listado de proyectos</small>
+  </footer>
+
+  <script>
+    // --- TRADUCCIONES Y DATOS DE PROYECTOS ---
+    const translations = {
+      es: {
+        title: 'Listado de proyectos - Fran',
+        brand: 'Fran - Proyectos',
+        h1: 'Listado de proyectos',
+        desc: 'Aquí tienes una vista clara y visual de los proyectos del grupo. Haz click en el primero para ir a su página de detalle.',
+        search: 'Buscar proyecto... / Search project...',
+        footer: '© 2025 Fran • Listado de proyectos',
+        authors: 'Autores:',
+        duration: 'Duración:',
+        techs: 'Tecnologías:',
+        weeks2: '2 semanas',
+        weeks3: '3 semanas',
+        htmlcssjs: 'HTML, CSS, JS',
+        detail: 'Ver detalle',
+        // Proyectos 1-30
+        p1: 'Proyecto 1 — Mini App de Galería',
+        p1desc: 'Galería responsive con pequeñas interacciones. Perfecto como primer proyecto para mostrar diseño y maquetación.',
+        p2: 'Proyecto 2 — Interacción y animaciones',
+        p2desc: 'Ejemplos de animaciones, respuesta a eventos y componentes sencillos para mejorar la experiencia de usuario.',
+        p3: 'Proyecto 3 — Dashboard de Tareas',
+        p3desc: 'Aplicación sencilla para gestionar tareas y listas. Incluye filtros, edición y almacenamiento local.',
+        p4: 'Proyecto 4 — Blog Personal',
+        p4desc: 'Blog estático con posts, categorías y buscador. Diseño limpio y adaptable a móvil.',
+        p5: 'Proyecto 5 — Portfolio Animado',
+        p5desc: 'Portfolio personal con animaciones, efectos visuales y sección de contacto interactiva.',
+        p6: 'Proyecto 6 — Landing E-commerce',
+        p6desc: 'Página de aterrizaje para tienda online, con destacados de productos, testimonios y experiencia de compra moderna.',
+        p7: 'Proyecto 7 — App del Tiempo',
+        p7desc: 'Aplicación de previsión meteorológica con geolocalización, fondos dinámicos y datos en tiempo real.',
+        p8: 'Proyecto 8 — Buscador de Recetas',
+        p8desc: 'Busca y descubre recetas por ingredientes, con filtros y datos nutricionales.',
+        p9: 'Proyecto 9 — Seguimiento Fitness',
+        p9desc: 'Registra entrenamientos, fija objetivos y visualiza el progreso con gráficos interactivos.',
+        p10: 'Proyecto 10 — Calendario de Eventos',
+        p10desc: 'Calendario interactivo para gestionar eventos, recordatorios e invitaciones.',
+        p11: 'Proyecto 11 — Portfolio en Grid',
+        p11desc: 'Portfolio en cuadrícula para mostrar trabajos creativos con categorías filtrables.',
+        p12: 'Proyecto 12 — Gestor de Finanzas',
+        p12desc: 'Panel de finanzas personales para controlar gastos, presupuestos y ahorros.',
+        p13: 'Proyecto 13 — Quiz de Idiomas',
+        p13desc: 'App de preguntas para practicar vocabulario y gramática en varios idiomas.',
+        p14: 'Proyecto 14 — Reproductor de Música',
+        p14desc: 'Reproductor musical web con listas, modo aleatorio y controles responsivos.',
+        p15: 'Proyecto 15 — Blog de Viajes',
+        p15desc: 'Historias de viaje, galerías de fotos y mapas interactivos de destinos.',
+        p16: 'Proyecto 16 — CV Online',
+        p16desc: 'Currículum online profesional con descarga en PDF y formulario de contacto.',
+        p17: 'Proyecto 17 — Base de Películas',
+        p17desc: 'Consulta y busca películas, con valoraciones, tráilers y reseñas.',
+        p18: 'Proyecto 18 — Galería de Arte',
+        p18desc: 'Galería de arte virtual con perfiles de artistas y calendario de exposiciones.',
+        p19: 'Proyecto 19 — Temporizador Meditación',
+        p19desc: 'Temporizador de meditación personalizable con sonidos relajantes y seguimiento.',
+        p20: 'Proyecto 20 — Adopción de Mascotas',
+        p20desc: 'Plataforma para encontrar y adoptar mascotas, con filtros e historias de adopción.',
+        p21: 'Proyecto 21 — Club de Lectura',
+        p21desc: 'Sitio para club de lectura con listas, reseñas y foros de discusión.',
+        p22: 'Proyecto 22 — Landing Startup',
+        p22desc: 'Landing page para startup tecnológica, con características y equipo.',
+        p23: 'Proyecto 23 — Quiz Batalla',
+        p23desc: 'Juego de preguntas multijugador con marcadores en tiempo real y temáticas.',
+        p24: 'Proyecto 24 — Cuida tus Plantas',
+        p24desc: 'Guía para el cuidado de plantas, recordatorios de riego e identificación.',
+        p25: 'Proyecto 25 — Generador de CV',
+        p25desc: 'Generador de currículum interactivo con plantillas y exportación.',
+        p26: 'Proyecto 26 — Delivery de Comida',
+        p26desc: 'App de entrega de comida con restaurantes, menús y seguimiento de pedidos.',
+        p27: 'Proyecto 27 — Aula Virtual',
+        p27desc: 'Aula online para clases, tareas y seguimiento de estudiantes.',
+        p28: 'Proyecto 28 — Alquiler de Coches',
+        p28desc: 'Plataforma de alquiler de coches con calendario y filtros de vehículos.',
+        p29: 'Proyecto 29 — Plataforma Solidaria',
+        p29desc: 'Plataforma para descubrir, apoyar y seguir proyectos solidarios.',
+        p30: 'Proyecto 30 — Agregador de Noticias',
+        p30desc: 'Agrega noticias de varias fuentes con filtros temáticos y resúmenes.'
+      },
+      en: {
+        title: 'Project list - Fran',
+        brand: 'Fran - Projects',
+        h1: 'Project list',
+        desc: 'Here is a clear and visual view of the group projects. Click the first one to go to its detail page.',
+        search: 'Search project... / Buscar project...',
+        footer: '© 2025 Fran • Project list',
+        authors: 'Authors:',
+        duration: 'Duration:',
+        techs: 'Technologies:',
+        weeks2: '2 weeks',
+        weeks3: '3 weeks',
+        htmlcssjs: 'HTML, CSS, JS',
+        detail: 'View detail',
+        // Projects 1-30
+        p1: 'Project 1 — Gallery Mini App',
+        p1desc: 'Responsive gallery with small interactions. Perfect as a first project to showcase design and layout.',
+        p2: 'Project 2 — Interaction & Animations',
+        p2desc: 'Examples of animations, event response and simple components to improve user experience.',
+        p3: 'Project 3 — Task Dashboard',
+        p3desc: 'Simple app to manage tasks and lists. Includes filters, editing and local storage.',
+        p4: 'Project 4 — Personal Blog',
+        p4desc: 'Static blog with posts, categories and search. Clean and mobile-adaptable design.',
+        p5: 'Project 5 — Animated Portfolio',
+        p5desc: 'Personal portfolio with animations, visual effects and interactive contact section.',
+        p6: 'Project 6 — E-commerce Landing',
+        p6desc: 'Landing page for online store, with product highlights, testimonials and modern shopping experience.',
+        p7: 'Project 7 — Weather App',
+        p7desc: 'Weather forecast app with geolocation, dynamic backgrounds and real-time data.',
+        p8: 'Project 8 — Recipe Finder',
+        p8desc: 'Search and discover recipes by ingredients, with filters and nutritional data.',
+        p9: 'Project 9 — Fitness Tracker',
+        p9desc: 'Log workouts, set goals and visualize progress with interactive charts.',
+        p10: 'Project 10 — Event Calendar',
+        p10desc: 'Interactive calendar to manage events, reminders and invitations.',
+        p11: 'Project 11 — Grid Portfolio',
+        p11desc: 'Grid portfolio to showcase creative work with filterable categories.',
+        p12: 'Project 12 — Finance Manager',
+        p12desc: 'Personal finance dashboard to control expenses, budgets and savings.',
+        p13: 'Project 13 — Language Quiz',
+        p13desc: 'Quiz app to practice vocabulary and grammar in several languages.',
+        p14: 'Project 14 — Music Player',
+        p14desc: 'Web music player with playlists, shuffle mode and responsive controls.',
+        p15: 'Project 15 — Travel Blog',
+        p15desc: 'Travel stories, photo galleries and interactive destination maps.',
+        p16: 'Project 16 — Online CV',
+        p16desc: 'Professional online CV with PDF download and contact form.',
+        p17: 'Project 17 — Movie Database',
+        p17desc: 'Browse and search movies, with ratings, trailers and reviews.',
+        p18: 'Project 18 — Art Gallery',
+        p18desc: 'Virtual art gallery with artist profiles and exhibition calendar.',
+        p19: 'Project 19 — Meditation Timer',
+        p19desc: 'Customizable meditation timer with relaxing sounds and tracking.',
+        p20: 'Project 20 — Pet Adoption',
+        p20desc: 'Platform to find and adopt pets, with filters and adoption stories.',
+        p21: 'Project 21 — Book Club',
+        p21desc: 'Book club site with lists, reviews and discussion forums.',
+        p22: 'Project 22 — Startup Landing',
+        p22desc: 'Landing page for tech startup, with features and team.',
+        p23: 'Project 23 — Quiz Battle',
+        p23desc: 'Multiplayer quiz game with real-time scoreboards and themes.',
+        p24: 'Project 24 — Plant Care',
+        p24desc: 'Guide for plant care, watering reminders and identification.',
+        p25: 'Project 25 — CV Generator',
+        p25desc: 'Interactive CV generator with templates and export.',
+        p26: 'Project 26 — Food Delivery',
+        p26desc: 'Food delivery app with restaurants, menus and order tracking.',
+        p27: 'Project 27 — Virtual Classroom',
+        p27desc: 'Online classroom for lessons, assignments and student tracking.',
+        p28: 'Project 28 — Car Rental',
+        p28desc: 'Car rental platform with calendar and vehicle filters.',
+        p29: 'Project 29 — Solidarity Platform',
+        p29desc: 'Platform to discover, support and follow solidarity projects.',
+        p30: 'Project 30 — News Aggregator',
+        p30desc: 'Aggregates news from various sources with thematic filters and summaries.'
+      }
+    };
+    // --- DATOS DE PROYECTOS ---
+    const projects = Array.from({length:30}, (_,i)=>({
+      idx: i+1,
+      link: i===0? 'proyecto1.html' : i===1? 'proyecto2.html' : '#',
+      // El resto de campos se traducen dinámicamente
+    }));
+    // --- RENDERIZADO Y FUNCIONALIDAD ---
+    function renderProjects(lang, filter=''){
+      const t = translations[lang] || translations.es;
+      const container = document.getElementById('projectsContainer');
+      container.innerHTML = '';
+      projects.forEach((proj, i) => {
+        const name = t['p'+(i+1)];
+        const desc = t['p'+(i+1)+'desc'];
+        if(filter && !name.toLowerCase().includes(filter) && !translations.en['p'+(i+1)].toLowerCase().includes(filter)) return;
+        const weeks = (i%2===0) ? t.weeks2 : t.weeks3;
+        const card = document.createElement('article');
+        card.className = 'card project-card';
+        card.innerHTML = `
+          <div class="card-inner">
+            <h2>${name}</h2>
+            <p class="muted">${desc}</p>
+            <ul>
+              <li><strong>${t.authors}</strong> Fran Mendoza</li>
+              <li><strong>${t.duration}</strong> ${weeks}</li>
+              <li><strong>${t.techs}</strong> ${t.htmlcssjs}</li>
+            </ul>
+            <div class="card-actions" style="margin-top:14px;display:flex;justify-content:center;">
+              <a href="${proj.link}" class="btn">${t.detail}</a>
+            </div>
+          </div>
+        `;
+        // Click en la tarjeta abre el detalle
+        card.addEventListener('click', (e) => {
+          if(e.target.closest('a')) return;
+          animateCards();
+          const link = card.querySelector('a.btn');
+          if(link && link.getAttribute('href')!=='#') setTimeout(()=>{window.location.href=link.getAttribute('href');},260);
+        });
+        // Hover animación
+        const inner = card.querySelector('.card-inner') || card;
+        card.addEventListener('mouseenter', () => inner.classList.add('animating'));
+        card.addEventListener('mouseleave', () => inner.classList.remove('animating'));
+        container.appendChild(card);
+      });
+    }
+    // --- MODO OSCURO Y IDIOMA ---
+    function applyDarkFromStorage(){ if(sessionStorage.getItem('modo-oscuro') === '1') document.body.classList.add('oscuro'); }
+    applyDarkFromStorage();
+    const darkToggle = document.getElementById('darkToggle');
+    darkToggle && darkToggle.addEventListener('click', () => { document.body.classList.toggle('oscuro'); sessionStorage.setItem('modo-oscuro', document.body.classList.contains('oscuro') ? '1' : '0'); animateCards(); });
+    // --- IDIOMA ---
+    const langToggle = document.getElementById('langToggle');
+    function applyLangFromStorage(){ const l = sessionStorage.getItem('lang') || 'es'; setLanguage(l); }
+    function setLanguage(lang){
+      sessionStorage.setItem('lang', lang);
+      if(!langToggle) return;
+      const flag = langToggle.querySelector('.flag');
+      const label = langToggle.querySelector('.label');
+      if(lang === 'en'){ flag.textContent = '🇬🇧'; label.textContent = 'EN'; langToggle.classList.add('active'); } else { flag.textContent = '🇪🇸'; label.textContent = 'ES'; langToggle.classList.remove('active'); }
+      const t = translations[lang] || translations.es;
+      document.title = t.title;
+      document.querySelector('.brand-text') && (document.querySelector('.brand-text').textContent = t.brand);
+      document.querySelector('h1') && (document.querySelector('h1').textContent = t.h1);
+      document.querySelector('p.muted') && (document.querySelector('p.muted').textContent = t.desc);
+      document.getElementById('projectSearch') && (document.getElementById('projectSearch').placeholder = t.search);
+      document.querySelector('footer small') && (document.querySelector('footer small').textContent = t.footer);
+      renderProjects(lang, document.getElementById('projectSearch')?.value.trim().toLowerCase()||'');
+    }
+    applyLangFromStorage();
+    if(langToggle){
+      langToggle.addEventListener('click', ()=>{
+        const cur = sessionStorage.getItem('lang') || 'es';
+        const next = cur === 'es' ? 'en' : 'es';
+        setLanguage(next);
+      });
+    }
+    // --- ANIMACIÓN TARJETAS ---
+    function animateCards(){
+      const nodes = document.querySelectorAll('.project-card .card-inner, .project-card, .card .card-inner');
+      nodes.forEach(el => el.classList.add('animating'));
+      setTimeout(() => nodes.forEach(el => el.classList.remove('animating')), 600);
+    }
+    // --- BUSCADOR ---
+    const searchInput = document.getElementById('projectSearch');
+    if(searchInput){
+      searchInput.addEventListener('input', function(){
+        const val = this.value.trim().toLowerCase();
+        const lang = sessionStorage.getItem('lang') || 'es';
+        renderProjects(lang, val);
+      });
+    }
+  </script>
+</body>
+</html>

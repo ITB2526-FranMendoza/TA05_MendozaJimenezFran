@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Portfolio - Fran</title>
+    <link rel="icon" type="image/png" href="logofran.jpg">
+    <link rel="stylesheet" href="./styles.css">
+    <style>
+      .projects-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 32px;
+        margin-top: 32px;
+      }
+      .project-section {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        background: var(--card);
+        border-radius: 12px;
+        box-shadow: 0 6px 18px rgba(11,15,30,0.04);
+        padding: 18px 14px 22px 14px;
+      }
+      .project-section .info {
+        margin-bottom: 16px;
+        text-align: left;
+      }
+      .project-section.right .info {
+        text-align: right;
+      }
+      .project-section .project-card {
+        margin: 0;
+      }
+      @media (max-width:900px) {
+        .projects-grid { grid-template-columns: 1fr; gap: 22px; }
+        .project-section.right .info { text-align: left; }
+      }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="topbar">
+            <img src="logofran.jpg" alt="Logo" class="logo-img" />
+            <div class="brand-text">Fran - Portfolio</div>
+            <nav class="topmenu" id="topmenu" aria-label="Menú principal">
+                <ul>
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="proyecto1.html">Proyecto 1</a></li>
+                    <li><a href="proyecto2.html">Proyecto 2</a></li>
+                    <li><a href="listadoproyecto.html">Listado</a></li>
+                    <li><a href="formulario.html">Contacto</a></li>
+                </ul>
+            </nav>
+            <div class="actions-right">
+                <button id="langToggle" class="lang-btn" aria-label="Cambiar idioma" title="Cambiar idioma"><span class="flag">🇪🇸</span><span class="label">ES</span></button>
+                <button id="darkToggle" class="icon-btn" title="Modo oscuro">🌙</button>
+            </div>
+        </div>
+    </header>
+    <main>
+        <article class="intro card" style="margin-bottom:18px;">
+            <h1>Hola, soy Fran</h1>
+            <p class="muted" id="desc-main">Bienvenido a mi portfolio. Información general y dos proyectos destacados. Haz click en "Ver detalle" para ir a la página específica de cada proyecto.</p>
+        </article>
+        <div class="projects-grid">
+          <!-- Apartado Izquierda -->
+          <section class="project-section left">
+            <div class="info">
+              <h2 id="p1-title">Proyecto 1</h2>
+              <p id="p1-desc" class="muted">Mini App de Galería: maquetación responsive, galería con vistas previas y comportamiento básico en JS.</p>
+            </div>
+            <article class="card project-card" id="card1">
+              <img src="https://picsum.photos/seed/indexp1/900/600" alt="Proyecto 1" style="width:100%;border-radius:8px;display:block;">
+              <div style="margin-top:10px;display:flex;justify-content:center;">
+                <a href="proyecto1.html" class="btn btn-main">Ver detalle</a>
+              </div>
+            </article>
+          </section>
+          <!-- Apartado Derecha -->
+          <section class="project-section right">
+            <div class="info">
+              <h2 id="p2-title">Proyecto 2</h2>
+              <p id="p2-desc" class="muted">Interacción y animaciones: ejemplos de animaciones CSS y manejo de eventos con JavaScript para mejorar UX.</p>
+            </div>
+            <article class="card project-card" id="card2">
+              <img src="https://picsum.photos/seed/indexp2/900/600" alt="Proyecto 2" style="width:100%;border-radius:8px;display:block;">
+              <div style="margin-top:10px;display:flex;justify-content:center;">
+                <a href="proyecto2.html" class="btn">Ver detalle</a>
+              </div>
+            </article>
+          </section>
+        </div>
+        <aside class="socials-section">
+            <h2 id="aside-title">Sígueme y enlaces útiles</h2>
+            <div class="social-links">
+                <a href="mailto:fran.mendoza.7e7@itb.cat" class="btn btn-footer">📧 Gmail</a>
+        <a href="https://github.com/ITB2526-FranMendoza" class="btn btn-footer" target="_blank" rel="noopener">🐙 GitHub</a>
+            </div>
+            <p class="note">(Cambia los enlaces por tus perfiles personales)</p>
+        </aside>
+    </main>
+    <footer>
+        <small id="footer-text">© 2025 Fran. Portfolio • <a href="mailto:tu.email@gmail.com" class="btn btn-footer">tu.email@gmail.com</a></small>
+    </footer>
+    <script>
+        // Modo oscuro persistente
+        function applyDarkFromStorage(){ if(sessionStorage.getItem('modo-oscuro') === '1') document.body.classList.add('oscuro'); }
+        applyDarkFromStorage();
+        const darkToggle = document.getElementById('darkToggle');
+        darkToggle && darkToggle.addEventListener('click', () => { document.body.classList.toggle('oscuro'); sessionStorage.setItem('modo-oscuro', document.body.classList.contains('oscuro') ? '1' : '0'); });
+        // Language toggle: ES <-> EN (persiste en sessionStorage)
+        const langToggle = document.getElementById('langToggle');
+        function applyLangFromStorage(){ const l = sessionStorage.getItem('lang') || 'es'; setLanguage(l); }
+        function setLanguage(lang){
+            sessionStorage.setItem('lang', lang);
+            if(!langToggle) return;
+            const flag = langToggle.querySelector('.flag');
+            const label = langToggle.querySelector('.label');
+            if(lang === 'en'){ flag.textContent = '🇬🇧'; label.textContent = 'EN'; langToggle.classList.add('active'); } else { flag.textContent = '🇪🇸'; label.textContent = 'ES'; langToggle.classList.remove('active'); }
+            // Traducción básica de textos principales
+            const translations = {
+                en: {
+                    title: 'Portfolio - Fran',
+                    brand: 'Fran - Portfolio',
+                    h1: 'Hi, I am Fran',
+                    desc: 'Welcome to my portfolio. General info and two featured projects. Click "View detail" to go to each project page.',
+                    p1: 'Project 1',
+                    p1desc: 'Gallery Mini App: responsive layout, gallery with previews and basic JS behavior.',
+                    p2: 'Project 2',
+                    p2desc: 'Interaction & animations: CSS animation examples and event handling with JavaScript to improve UX.',
+                    authors: 'Authors:',
+                    detail: 'View detail',
+                    aside: 'Follow me & useful links',
+                    gmail: '📧 Gmail',
+                    github: '🐙 GitHub',
+                    note: '(Change the links to your personal profiles)',
+                    footer: '© 2025 Fran. Portfolio • fran.mendoza.7e7@itb.cat'
+                },
+                es: {
+                    title: 'Portfolio - Fran',
+                    brand: 'Fran - Portfolio',
+                    h1: 'Hola, soy Fran',
+                    desc: 'Bienvenido a mi portfolio. Información general y dos proyectos destacados. Haz click en "Ver detalle" para ir a la página específica de cada proyecto.',
+                    p1: 'Proyecto 1',
+                    p1desc: 'Mini App de Galería: maquetación responsive, galería con vistas previas y comportamiento básico en JS.',
+                    p2: 'Proyecto 2',
+                    p2desc: 'Interacción y animaciones: ejemplos de animaciones CSS y manejo de eventos con JavaScript para mejorar UX.',
+                    authors: 'Autores:',
+                    detail: 'Ver detalle',
+                    aside: 'Sígueme y enlaces útiles',
+                    gmail: '📧 Gmail',
+                    github: '🐙 GitHub',
+                    note: '(Cambia los enlaces por tus perfiles personales)',
+                    footer: '© 2025 Fran. Portfolio • fran.mendoza.7e7@itb.cat'
+                }
+            };
+            const t = translations[lang] || translations.es;
+            document.title = t.title;
+            document.querySelector('.brand-text') && (document.querySelector('.brand-text').textContent = t.brand);
+            document.querySelector('h1') && (document.querySelector('h1').textContent = t.h1);
+            document.getElementById('desc-main') && (document.getElementById('desc-main').textContent = t.desc);
+            document.getElementById('p1-title') && (document.getElementById('p1-title').textContent = t.p1);
+            document.getElementById('p1-desc') && (document.getElementById('p1-desc').textContent = t.p1desc);
+            document.getElementById('p2-title') && (document.getElementById('p2-title').textContent = t.p2);
+            document.getElementById('p2-desc') && (document.getElementById('p2-desc').textContent = t.p2desc);
+            document.getElementById('aside-title') && (document.getElementById('aside-title').textContent = t.aside);
+            document.querySelector('.social-links .social[title="Gmail"]') && (document.querySelector('.social-links .social[title="Gmail"]').textContent = t.gmail);
+            document.querySelectorAll('.social-links .social')[1] && (document.querySelectorAll('.social-links .social')[1].textContent = t.classroom);
+            document.querySelectorAll('.social-links .social')[2] && (document.querySelectorAll('.social-links .social')[2].textContent = t.drive);
+            document.querySelectorAll('.social-links .social')[3] && (document.querySelectorAll('.social-links .social')[3].textContent = t.github);
+            document.querySelectorAll('.social-links .social')[4] && (document.querySelectorAll('.social-links .social')[4].textContent = t.linkedin);
+            document.querySelector('.note') && (document.querySelector('.note').textContent = t.note);
+            document.getElementById('footer-text') && (document.getElementById('footer-text').textContent = t.footer);
+            // Botones de las tarjetas
+            document.querySelector('#card1 .btn') && (document.querySelector('#card1 .btn').textContent = t.detail);
+            document.querySelector('#card2 .btn') && (document.querySelector('#card2 .btn').textContent = t.detail);
+            document.querySelector('#card1 span') && (document.querySelector('#card1 span').innerHTML = `<strong>${t.authors}</strong> Fran Mendoza`);
+            document.querySelector('#card2 span') && (document.querySelector('#card2 span').innerHTML = `<strong>${t.authors}</strong> Fran Mendoza`);
+        }
+        applyLangFromStorage();
+        if(langToggle){
+            langToggle.addEventListener('click', ()=>{
+                const cur = sessionStorage.getItem('lang') || 'es';
+                const next = cur === 'es' ? 'en' : 'es';
+                setLanguage(next);
+            });
+        }
+        // Movimiento de tarjetas: aplicar transform con JS al pasar por encima
+        document.querySelectorAll('.project-card').forEach(card => {
+            card.addEventListener('mouseenter', () => { card.style.transform = 'rotateY(5deg)'; });
+            card.addEventListener('mouseleave', () => { card.style.transform = ''; });
+        });
+    </script>
+</body>
+</html>

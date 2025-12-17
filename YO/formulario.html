@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Formulario - Fran</title>
+  <link rel="icon" type="image/png" href="logofran.jpg">
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <img src="logofran.jpg" alt="Logo" class="logo-img">
+    <div class="brand-text">Fran - Contacto</div>
+    <nav class="topmenu" id="topmenu" aria-label="Menú principal">
+      <ul>
+        <li><a href="index.html">Inicio</a></li>
+        <li><a href="proyecto1.html">Proyecto 1</a></li>
+        <li><a href="proyecto2.html">Proyecto 2</a></li>
+        <li><a href="listadoproyecto.html">Listado</a></li>
+        <li><a href="formulario.html">Contacto</a></li>
+      </ul>
+    </nav>
+    <div class="actions-right">
+      <button id="langToggle" class="lang-btn" aria-label="Cambiar idioma" title="Cambiar idioma"><span class="flag">🇪🇸</span><span class="label">ES</span></button>
+      <button id="darkToggle" class="icon-btn" title="Modo oscuro">🌙</button>
+    </div>
+  </header>
+
+  <main style="max-width:900px;margin:28px auto;padding:0 16px">
+    <article class="card">
+      <h1>Formulario de contacto</h1>
+      <p class="muted">Rellena el formulario y pulsa enviar. Es un ejemplo; aquí no se envía realmente nada al servidor.</p>
+
+      <form id="contactForm" novalidate>
+        <label for="name">Nombre</label>
+        <input id="name" name="name" type="text" placeholder="Tu nombre" required>
+
+        <label for="email">Correo</label>
+        <input id="email" name="email" type="email" placeholder="tu@correo.com" required>
+
+        <label for="subject">Asunto</label>
+        <input id="subject" name="subject" type="text" placeholder="Asunto">
+
+        <label for="message">Mensaje</label>
+        <textarea id="message" name="message" rows="6" placeholder="Escribe tu mensaje..."></textarea>
+
+        <div class="form-actions">
+          <button type="submit" class="btn">Enviar</button>
+          <button type="reset" class="btn secondary">Limpiar</button>
+        </div>
+      </form>
+
+    </article>
+  </main>
+
+  <footer>
+    <small class="muted">© 2025 Fran • Contacto</small>
+  </footer>
+
+  <script>
+    // Modo oscuro persistente
+    function applyDarkFromStorage(){ if(sessionStorage.getItem('modo-oscuro') === '1') document.body.classList.add('oscuro'); }
+    applyDarkFromStorage();
+    const darkToggle = document.getElementById('darkToggle');
+    darkToggle && darkToggle.addEventListener('click', () => { document.body.classList.toggle('oscuro'); sessionStorage.setItem('modo-oscuro', document.body.classList.contains('oscuro') ? '1' : '0'); animateCards(); });
+
+    // Language toggle: ES <-> EN (persiste en sessionStorage)
+    const langToggle = document.getElementById('langToggle');
+    function applyLangFromStorage(){ const l = sessionStorage.getItem('lang') || 'es'; setLanguage(l); }
+    function setLanguage(lang){
+      sessionStorage.setItem('lang', lang);
+      // actualizar bandera y etiqueta
+      if(!langToggle) return;
+      const flag = langToggle.querySelector('.flag');
+      const label = langToggle.querySelector('.label');
+      if(lang === 'en'){ flag.textContent = '🇬🇧'; label.textContent = 'EN'; langToggle.classList.add('active'); } else { flag.textContent = '🇪🇸'; label.textContent = 'ES'; langToggle.classList.remove('active'); }
+
+      // traducir textos básicos de la página (demo)
+      const translations = {
+        en: {
+          title: 'Contact form - Fran',
+          heading: 'Contact form',
+          desc: 'Fill the form and click send. This is a demo; it does not actually send data.',
+          name: 'Your name', email: 'Your email', subject: 'Subject', message: 'Message', send: 'Send', reset: 'Reset',
+          footer: '© 2025 Fran • Contact'
+        },
+        es: {
+          title: 'Formulario - Fran',
+          heading: 'Formulario de contacto',
+          desc: 'Rellena el formulario y pulsa enviar. Es un ejemplo; aquí no se envía realmente nada al servidor.',
+          name: 'Tu nombre', email: 'Tu correo', subject: 'Asunto', message: 'Mensaje', send: 'Enviar', reset: 'Limpiar',
+          footer: '© 2025 Fran • Contacto'
+        }
+      };
+
+      const t = translations[lang] || translations.es;
+      document.title = t.title;
+      document.querySelector('h1') && (document.querySelector('h1').textContent = t.heading);
+      document.querySelector('p.muted') && (document.querySelector('p.muted').textContent = t.desc);
+      document.querySelector('label[for="name"]') && (document.querySelector('label[for="name"]').textContent = t.name);
+      document.querySelector('label[for="email"]') && (document.querySelector('label[for="email"]').textContent = t.email);
+      document.querySelector('label[for="subject"]') && (document.querySelector('label[for="subject"]').textContent = t.subject);
+      document.querySelector('label[for="message"]') && (document.querySelector('label[for="message"]').textContent = t.message);
+      const sendBtn = document.querySelector('button[type="submit"]'); if(sendBtn) sendBtn.textContent = t.send;
+      const resetBtn = document.querySelector('button[type="reset"]'); if(resetBtn) resetBtn.textContent = t.reset;
+      document.querySelector('footer small') && (document.querySelector('footer small').textContent = t.footer);
+
+      // Traducción de placeholders y labels
+      document.getElementById('name').placeholder = t.name;
+      document.getElementById('email').placeholder = t.email;
+      document.getElementById('subject').placeholder = t.subject;
+      document.getElementById('message').placeholder = t.message;
+    }
+
+    applyLangFromStorage();
+
+    if(langToggle){
+      langToggle.addEventListener('click', ()=>{
+        const cur = sessionStorage.getItem('lang') || 'es';
+        const next = cur === 'es' ? 'en' : 'es';
+        setLanguage(next);
+      });
+    }
+
+    // Función de animación JS para las tarjetas (efecto rotateY) — reutilizable
+    function animateCards(){
+      const nodes = document.querySelectorAll('.project-card .card-inner, .project-card, .card .card-inner');
+      nodes.forEach(el => {
+        // aplicar efecto temporal
+        el.style.transition = 'transform .45s ease';
+        el.style.transform = 'rotateY(8deg)';
+      });
+      // revertir después
+      setTimeout(() => { nodes.forEach(el => { el.style.transform = ''; }); }, 450);
+    }
+
+    // Asociar animación a botones para que se vea antes de navegar (UX demo)
+    document.querySelectorAll('.btn').forEach(btn => btn.addEventListener('click', () => { animateCards(); }));
+
+    // Manejo del formulario (validación básica) — ahora llamando a animateCards() en enviar/limpiar
+    const form = document.getElementById('contactForm');
+    if(form){
+      form.addEventListener('submit', function(e){
+        e.preventDefault();
+        const name = document.getElementById('name').value.trim();
+        const email = document.getElementById('email').value.trim();
+        if(!name || !email){ alert('Nombre y correo son obligatorios.'); animateCards(); return; }
+        const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if(!re.test(email)){ alert('Introduce un correo válido.'); animateCards(); return; }
+        const data = Object.fromEntries(new FormData(this).entries());
+        console.log('Formulario demo enviado:', data);
+        alert('Gracias, mensaje recibido (demo).');
+        this.reset();
+        animateCards();
+      });
+
+      form.addEventListener('reset', function(){
+        // pequeña pausa para que el reset sea perceptible
+        setTimeout(() => { animateCards(); }, 60);
+      });
+    }
+  </script>
+</body>
+</html>

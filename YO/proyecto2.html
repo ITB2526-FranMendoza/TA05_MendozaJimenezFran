@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Proyecto 2 - Fran</title>
+  <link rel="stylesheet" href="./styles.css">
+  <link rel="icon" type="image/png" href="logofran.jpg">
+  <style>
+    /* Layout para Proyecto 2: información a la izquierda, fotos a la derecha */
+    .project-layout{display:flex;gap:20px;align-items:flex-start;flex-direction:row}
+    .project-media{width:48%;max-width:520px;flex:0 0 48%}
+    .project-info{width:52%;flex:1 1 52%}
+    .preview-thumbs{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+    .preview-thumbs img{width:calc(50% - 4px);border-radius:8px;display:block}
+
+    @media (max-width:780px){
+      .project-layout{flex-direction:column}
+      .project-media,.project-info{width:100%;flex:0 0 auto}
+      .preview-thumbs img{width:calc(33.333% - 5.33px)}
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="topbar">
+      <img src="logofran.jpg" alt="Logo" class="logo-img" />
+      <div class="brand-text">Fran - Proyecto 2</div>
+      <nav class="topmenu" id="topmenu" aria-label="Menú principal">
+        <ul>
+          <li><a href="index.html">Inicio</a></li>
+          <li><a href="proyecto1.html">Proyecto 1</a></li>
+          <li><a href="proyecto2.html">Proyecto 2</a></li>
+          <li><a href="listadoproyecto.html">Listado</a></li>
+          <li><a href="formulario.html">Contacto</a></li>
+        </ul>
+      </nav>
+      <div class="actions-right">
+        <button id="langToggle" class="lang-btn" aria-label="Cambiar idioma" title="Cambiar idioma"><span class="flag">🇪🇸</span><span class="label">ES</span></button>
+        <button id="darkToggle" class="icon-btn" title="Modo oscuro">🌙</button>
+      </div>
+    </div>
+  </header>
+
+  <main style="max-width:1000px;margin:28px auto;padding:0 16px;">
+    <article class="card project-layout" style="margin-bottom:18px;">
+      <!-- Columna izquierda: información clara y definitiva -->
+      <div class="project-info">
+        <h1>Proyecto 2 — Interacción y pequeñas animaciones</h1>
+        <p class="muted">Proyecto 2 muestra ejemplos de interacción con JavaScript: pequeñas animaciones, manipulación del DOM y componentes sencillos. Ideal para demostrar comportamiento dinámico.</p>
+        <h3>Descripción corta</h3>
+        <p>En este proyecto se exploran técnicas como animaciones CSS, respuestas a eventos del usuario y componentes reutilizables. Es un proyecto educativo para practicar JavaScript del lado del cliente.</p>
+        <section>
+          <h3>Tecnologías</h3>
+          <p class="muted">HTML5 / CSS3</p>
+          <ul>
+            <li>JavaScript (eventos y animaciones)</li>
+            <li>Imágenes de ejemplo</li>
+          </ul>
+        </section>
+        <p class="small muted" style="margin-top:8px">Fecha: 2025 • Estado: finalizado • Licencia: MIT (ejemplo)</p>
+      </div>
+
+      <!-- Columna derecha: imagen principal y previews -->
+      <div class="project-media">
+        <figure>
+          <img src="https://picsum.photos/seed/proj2full/1200/800" alt="Captura principal del proyecto 2" style="width:100%;border-radius:10px;display:block;box-shadow:0 10px 28px rgba(11,15,30,0.06);">
+          <figcaption class="muted" style="font-size:13px;margin-top:8px">Captura principal — interacción y animación</figcaption>
+        </figure>
+
+        <div class="preview-thumbs" aria-hidden="false">
+          <img src="https://picsum.photos/seed/proj2a/400/260" alt="Preview 1" loading="lazy">
+          <img src="https://picsum.photos/seed/proj2b/400/260" alt="Preview 2" loading="lazy">
+          <img src="https://picsum.photos/seed/proj2c/400/260" alt="Preview 3" loading="lazy">
+          <img src="https://picsum.photos/seed/proj2d/400/260" alt="Preview 4" loading="lazy">
+        </div>
+      </div>
+    </article>
+     
+    <aside class="socials-section">
+      <h3>Contacto y enlaces</h3>
+      <div class="social-links" style="margin-top:8px;">
+        <a href="mailto:fran.mendoza.7e7@itb.cat" class="btn btn-footer">📧 Gmail</a>
+        <a href="https://github.com/ITB2526-FranMendoza" class="btn btn-footer" target="_blank" rel="noopener">🐙 GitHub</a>
+      </div>
+    </aside>
+  </main>
+
+  <footer>
+    <small class="muted">© 2025 Fran • Proyecto 2</small>
+  </footer>
+
+  <script>
+    // Modo oscuro persistente
+    function applyDarkFromStorage(){ if(sessionStorage.getItem('modo-oscuro') === '1') document.body.classList.add('oscuro'); }
+    applyDarkFromStorage();
+    const darkToggle = document.getElementById('darkToggle');
+    darkToggle && darkToggle.addEventListener('click', () => {
+      document.body.classList.toggle('oscuro');
+      sessionStorage.setItem('modo-oscuro', document.body.classList.contains('oscuro') ? '1' : '0');
+      animateCards();
+    });
+
+    // Language toggle: ES <-> EN (persiste en sessionStorage)
+    const langToggle = document.getElementById('langToggle');
+    function applyLangFromStorage(){ const l = sessionStorage.getItem('lang') || 'es'; setLanguage(l); }
+    function setLanguage(lang){
+      sessionStorage.setItem('lang', lang);
+      if(!langToggle) return;
+      const flag = langToggle.querySelector('.flag');
+      const label = langToggle.querySelector('.label');
+      if(lang === 'en'){ flag.textContent = '🇬🇧'; label.textContent = 'EN'; langToggle.classList.add('active'); } else { flag.textContent = '🇪🇸'; label.textContent = 'ES'; langToggle.classList.remove('active'); }
+      // Traducción básica de textos principales
+      const translations = {
+        en: {
+          title: 'Project 2 - Fran',
+          brand: 'Fran - Project 2',
+          h1: 'Project 2 — Interaction & Small Animations',
+          desc: 'Project 2 shows JavaScript interaction examples: small animations, DOM manipulation, and simple components. Ideal to demonstrate dynamic behavior.',
+          short: 'Short description',
+          shortdesc: 'This project explores techniques like CSS animations, user event responses, and reusable components. It is an educational project to practice client-side JavaScript.',
+          tech: 'Technologies',
+          t1: 'HTML5 / CSS3',
+          t2: 'JavaScript (events & animations)',
+          t3: 'Sample images',
+          aside: 'Contact & links',
+          gmail: '📧 Gmail',
+          github: '🐙 GitHub',
+          footer: '© 2025 Fran • Project 2',
+          figcaption: 'Main screenshot — interaction & animation',
+          date: 'Date: 2025 • Status: finished • License: MIT (example)',
+          detail: 'View detail'
+        },
+        es: {
+          title: 'Proyecto 2 - Fran',
+          brand: 'Fran - Proyecto 2',
+          h1: 'Proyecto 2 — Interacción y pequeñas animaciones',
+          desc: 'Proyecto 2 muestra ejemplos de interacción con JavaScript: pequeñas animaciones, manipulación del DOM y componentes sencillos. Ideal para demostrar comportamiento dinámico.',
+          short: 'Descripción corta',
+          shortdesc: 'En este proyecto se exploran técnicas como animaciones CSS, respuestas a eventos del usuario y componentes reutilizables. Es un proyecto educativo para practicar JavaScript del lado del cliente.',
+          tech: 'Tecnologías',
+          t1: 'HTML5 / CSS3',
+          t2: 'JavaScript (eventos y animaciones)',
+          t3: 'Imágenes de ejemplo',
+          aside: 'Contacto y enlaces',
+          gmail: '📧 Gmail',
+          github: '🐙 GitHub',
+          footer: '© 2025 Fran • Proyecto 2',
+          figcaption: 'Captura principal — interacción y animación',
+          date: 'Fecha: 2025 • Estado: finalizado • Licencia: MIT (ejemplo)',
+          detail: 'Ver detalle'
+        }
+      };
+      const t = translations[lang] || translations.es;
+      document.title = t.title;
+      document.querySelector('.brand-text') && (document.querySelector('.brand-text').textContent = t.brand);
+      document.querySelector('h1') && (document.querySelector('h1').textContent = t.h1);
+      document.querySelector('p.muted') && (document.querySelector('p.muted').textContent = t.desc);
+      document.querySelector('h3') && (document.querySelector('h3').textContent = t.short);
+      const shortdesc = document.querySelectorAll('h3 + p');
+      shortdesc[0] && (shortdesc[0].textContent = t.shortdesc);
+      document.querySelector('h4') && (document.querySelector('h4').textContent = t.tech);
+      document.querySelector('.small.muted') && (document.querySelector('.small.muted').textContent = t.date);
+      const techs = document.querySelectorAll('.project-info ul li');
+      techs[0] && (techs[0].textContent = t.t1);
+      techs[1] && (techs[1].textContent = t.t2);
+      techs[2] && (techs[2].textContent = t.t3);
+      const btns = document.querySelectorAll('.card-actions .btn');
+      btns[0] && (btns[0].textContent = t.demo);
+      btns[1] && (btns[1].textContent = t.code);
+      document.querySelector('.socials-section h3') && (document.querySelector('.socials-section h3').textContent = t.aside);
+      const socialLinks = document.querySelectorAll('.social-links .social');
+      socialLinks[0] && (socialLinks[0].textContent = t.gmail);
+      socialLinks[1] && (socialLinks[1].textContent = t.github);
+      document.querySelector('footer small') && (document.querySelector('footer small').textContent = t.footer);
+      document.querySelector('figcaption') && (document.querySelector('figcaption').textContent = t.figcaption);
+    }
+    applyLangFromStorage();
+    if(langToggle){
+      langToggle.addEventListener('click', ()=>{
+        const cur = sessionStorage.getItem('lang') || 'es';
+        const next = cur === 'es' ? 'en' : 'es';
+        setLanguage(next);
+      });
+    }
+    // Animación JS reutilizable para tarjetas (añade/quita clase .animating)
+    function animateCards(){
+      const nodes = document.querySelectorAll('.project-card .card-inner, .project-card, .card .card-inner');
+      nodes.forEach(el => el.classList.add('animating'));
+      setTimeout(() => nodes.forEach(el => el.classList.remove('animating')), 600);
+    }
+    // Animación por hover en tarjetas (cuando existan)
+    document.querySelectorAll('.project-card').forEach(card => {
+      const inner = card.querySelector('.card-inner') || card;
+      card.addEventListener('mouseenter', () => inner.classList.add('animating'));
+      card.addEventListener('mouseleave', () => inner.classList.remove('animating'));
+    });
+    // Asociar la animación a botones y enlaces de demo
+    document.querySelectorAll('.btn').forEach(btn => btn.addEventListener('click', () => { animateCards(); }));
+  </script>
+</body>
+</html>

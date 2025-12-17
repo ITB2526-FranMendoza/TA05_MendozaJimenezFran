@@ -1,0 +1,418 @@
+/* Variables */
+:root{
+  --accent:#2b6cb0;
+  --accent-strong:#1f4f80;
+  --muted:#6b7280;
+  --bg:#f7fafc;
+  --card:#ffffff;
+  --text:#111;
+}
+
+/* Reset ligero */
+*{box-sizing:border-box}
+body{
+  font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  margin:0; background:var(--bg); color:var(--text); -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
+}
+
+/* Topbar / header */
+.topbar{ display:flex; align-items:center; gap:12px; padding:12px 16px; background:var(--card); border-bottom:1px solid #e6e9ee; position:sticky; top:0; z-index:40 }
+.brand{ font-weight:700; color:var(--accent); display:flex; align-items:center; gap:8px }
+.logo{ font-size:18px }
+.logo-img{ width:46px; height:46px; object-fit:cover; border-radius:8px; background:#eef2ff }
+.actions-right{ margin-left:auto; display:flex; gap:8px; align-items:center }
+.icon-btn{ background:transparent; border:0; cursor:pointer; font-size:18px }
+
+/* Top horizontal menu (hamburguesa abre/cierra) */
+.topmenu{ margin-left:12px; display:none; gap:8px; align-items:center }
+.topmenu ul{ display:flex; gap:8px; list-style:none; margin:0; padding:0 }
+.topmenu a{ padding:8px 10px; border-radius:8px; text-decoration:none; color:var(--accent-strong) }
+.topmenu a:hover{ background:linear-gradient(90deg,#eef6ff,#f7fbff) }
+.topmenu.abierto{
+  display:flex !important;
+  position:absolute;
+  left:0; right:0; top:100%;
+  background:var(--card);
+  padding:10px 12px;
+  gap:8px;
+  justify-content:center;
+  box-shadow:0 8px 24px rgba(11,15,30,0.08);
+  border-bottom-left-radius:10px;
+  border-bottom-right-radius:10px;
+  z-index:55;
+}
+.topmenu.abierto ul{ flex-wrap:wrap; justify-content:center }
+.hamburger{ background:transparent; border:0; font-size:20px; cursor:pointer }
+
+@media(min-width:700px){
+  .topmenu{ display:flex !important }
+  .hamburger{ display:none }
+}
+
+/* Hamburger / sidebar */
+.hamburger{ display:none !important }
+.sidebar{ display:none !important }
+.topmenu{ display:flex !important; gap:8px }
+.topmenu.abierto{ position:static !important; box-shadow:none !important; border-radius:0 !important }
+
+/* Asegurar que en móvil el menú ocupa el espacio del header sin solaparse */
+@media (max-width:700px){
+  .topmenu{ flex-wrap:wrap; justify-content:center }
+  .topmenu ul{ justify-content:center }
+}
+
+/* Main layout */
+main{ max-width:1000px; margin:28px auto; padding:0 16px }
+.hero{ background:var(--card); padding:22px; border-radius:10px; box-shadow:0 6px 18px rgba(11,15,30,0.04) }
+.muted{ color:var(--muted) }
+
+/* Projects grid */
+.projects{ display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:18px; margin-top:18px }
+.card{ background:var(--card); padding:18px; border-radius:10px; box-shadow:0 6px 18px rgba(11,15,30,0.04); transition:transform .22s ease, box-shadow .22s ease }
+.project-card{ cursor:pointer; perspective:800px }
+.project-card:hover{ transform: translateY(-6px); box-shadow:0 18px 40px rgba(11,15,30,0.08) }
+.project-card .card-inner{ transition:transform .35s ease; transform-style:preserve-3d }
+.project-card:hover .card-inner{ transform:rotateY(5deg) }
+.card h3{ margin:0 0 8px 0 }
+.card p{ color:var(--muted); margin:0 0 12px 0 }
+.card-actions{ display:flex; justify-content: flex-end; gap: 0; margin-top: 10px }
+
+/* Project layout: two-column vertical cards */
+.project-layout{ display:grid; grid-template-columns:1fr 1fr; gap:18px; align-items:start }
+.project-layout.reverse{ grid-template-columns:1fr 1fr }
+.project-layout .project-media{ max-width:100%; border-radius:8px }
+.project-info{ padding:6px 10px }
+
+@media(max-width:800px){
+  .project-layout{ grid-template-columns:1fr }
+}
+
+/* Buttons */
+.btn, a.btn, button.btn {
+  display:inline-block;
+  text-decoration:none;
+  padding:8px 16px;
+  border-radius:8px;
+  background:var(--accent);
+  color:#fff;
+  font-weight:600;
+  box-shadow:0 2px 8px rgba(43,108,176,0.08);
+  transition: background .18s, color .18s, box-shadow .18s, transform .18s;
+  border:none;
+  cursor:pointer;
+}
+.btn.secondary, a.btn.secondary, button.btn.secondary {
+  background:#eef2ff;
+  color:var(--accent);
+  border:1px solid #dbeafe;
+}
+.btn:hover, a.btn:hover, button.btn:hover,
+.btn:focus, a.btn:focus, button.btn:focus {
+  background:var(--accent-strong);
+  color:#fff;
+  box-shadow:0 4px 16px rgba(43,108,176,0.16);
+  transform:translateY(-2px) scale(1.03);
+  outline:0;
+}
+.btn.secondary:hover, a.btn.secondary:hover, button.btn.secondary:hover,
+.btn.secondary:focus, a.btn.secondary:focus, button.btn.secondary:focus {
+  background:var(--accent);
+  color:#fff;
+  border:1px solid var(--accent-strong);
+}
+body.oscuro .btn, body.oscuro a.btn, body.oscuro button.btn {
+  background:var(--accent);
+  color:#111 !important;
+}
+body.oscuro .btn.secondary, body.oscuro a.btn.secondary, body.oscuro button.btn.secondary {
+  background:#1a2333;
+  color:var(--accent);
+  border:1px solid #23304a;
+}
+body.oscuro .btn:hover, body.oscuro a.btn:hover, body.oscuro button.btn:hover,
+body.oscuro .btn:focus, body.oscuro a.btn:focus, body.oscuro button.btn:focus {
+  background:var(--accent-strong);
+  color:#fff !important;
+  box-shadow:0 4px 16px rgba(110,168,255,0.18);
+}
+body.oscuro .btn.secondary:hover, body.oscuro a.btn.secondary:hover, body.oscuro button.btn.secondary:hover,
+body.oscuro .btn.secondary:focus, body.oscuro a.btn.secondary:focus, body.oscuro button.btn.secondary:focus {
+  background:var(--accent);
+  color:#fff !important;
+  border:1px solid var(--accent-strong);
+}
+@media (max-width:700px){
+  .btn, a.btn, button.btn {
+    padding:8px 10px;
+    font-size:15px;
+  }
+  .card-actions .btn {
+    font-size: 15px;
+    padding: 10px 0;
+  }
+}
+
+/* Main button style for emphasis */
+.btn-main {
+  font-size: 1.18rem;
+  padding: 14px 32px;
+  border-radius: 12px;
+  background: var(--accent-strong);
+  color: #fff !important;
+  box-shadow: 0 4px 18px rgba(43,108,176,0.16);
+  letter-spacing: 0.01em;
+  border: none;
+  transition: background .18s, color .18s, box-shadow .18s, transform .18s;
+}
+.btn-main:hover, .btn-main:focus {
+  background: var(--accent);
+  color: #fff !important;
+  box-shadow: 0 8px 28px rgba(43,108,176,0.22);
+  transform: translateY(-2px) scale(1.04);
+}
+@media (max-width:700px){
+  .btn-main {
+    font-size: 1rem;
+    padding: 12px 0;
+    width: 100%;
+    border-radius: 10px;
+  }
+}
+
+/* Socials */
+.socials-section{ background:var(--card); padding:14px; border-radius:10px; box-shadow:0 6px 18px rgba(11,15,30,0.04); margin-top:18px }
+.social-links{ display:flex; flex-wrap:wrap; gap:10px }
+.social{ display:inline-flex; align-items:center; gap:8px; padding:8px 12px; border-radius:8px; background:var(--accent); color:#fff; text-decoration:none }
+.social:hover{ opacity:.95 }
+.note{ color:var(--muted); font-size:13px; margin-top:8px }
+
+/* Footer */
+footer{ text-align:center; color:var(--muted); margin:32px 0 }
+footer a{ color:var(--accent-strong); text-decoration:none }
+
+/* Form styles */
+form{ background:var(--card); padding:18px; border-radius:10px; box-shadow:0 6px 18px rgba(11,15,30,0.04); max-width:720px }
+label{ display:block; margin-bottom:6px; font-size:14px }
+input, textarea{ width:100%; padding:10px; border-radius:8px; border:1px solid #e6e9ee; margin-bottom:12px }
+textarea{ min-height:120px }
+
+/* Form actions align right */
+.form-actions{ display:flex; gap:8px; justify-content:flex-end; margin-top:8px }
+
+/* Small tweaks for lists of sources */
+.sources{ margin-top:18px; font-size:13px; color:var(--muted) }
+
+/* Dark mode */
+body.oscuro{
+  --bg:#0f1720; --card:#0b1220; --text:#e6eef8; --muted:#9aa6bd; --accent:#6ea8ff; --accent-strong:#95c5ff;
+  background:var(--bg); color:var(--text);
+}
+body.oscuro .sidebar{ background:rgba(10,14,20,0.95) }
+body.oscuro .card, body.oscuro .hero, body.oscuro .socials-section, body.oscuro form{ background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)) }
+body.oscuro a, body.oscuro .brand{ color:var(--accent) }
+body.oscuro .btn, body.oscuro .social {
+  color: #111 !important;
+}
+
+/* Responsive */
+@media (max-width:700px){
+  .projects{ grid-template-columns:1fr }
+  .sidebar{ width:85vw; left:-100vw }
+  .sidebar.open{ left:0 }
+  .topbar{ padding:10px }
+}
+
+/* Dropdown horizontal del menú cuando está activo en móviles */
+@media (max-width:700px){
+  .topbar{ position:sticky; top:0; z-index:60 }
+  .topmenu.abierto{
+    display:flex !important;
+    position:absolute;
+    left:0; right:0; top:100%;
+    background:var(--card);
+    padding:10px 12px;
+    gap:8px;
+    justify-content:center;
+    box-shadow:0 8px 24px rgba(11,15,30,0.08);
+    border-bottom-left-radius:10px;
+    border-bottom-right-radius:10px;
+    z-index:55;
+  }
+  .topmenu.abierto ul{ flex-wrap:wrap; justify-content:center }
+}
+
+/* Reglas específicas para páginas que usan menú hamburguesa (.has-hamburger) */
+.has-hamburger .topmenu { display: none !important; }
+.has-hamburger .hamburger { display:inline-flex !important; background:transparent; border:0; font-size:20px; cursor:pointer }
+.has-hamburger .topmenu.abierto{
+  display:flex !important;
+  position:absolute;
+  left:0; right:0; top:100%;
+  background:var(--card);
+  padding:10px 12px;
+  gap:8px;
+  justify-content:center;
+  box-shadow:0 8px 24px rgba(11,15,30,0.08);
+  border-bottom-left-radius:10px;
+  border-bottom-right-radius:10px;
+  z-index:55;
+}
+.has-hamburger .topmenu.abierto ul{ display:flex; gap:8px; flex-wrap:wrap; justify-content:center; margin:0; padding:0 }
+
+@media(max-width:700px){
+  .has-hamburger .topmenu.abierto{ padding:8px 10px }
+  .has-hamburger .topmenu a{ padding:8px 10px; font-size:15px }
+}
+
+@media (prefers-reduced-motion:reduce){ *{ transition:none!important } }
+
+/* Animación controlada por JS: clase temporal que rota ligeramente en Y */
+.card-inner.animating, .card.animating {
+  transform: rotateY(12deg);
+  transition: transform .6s cubic-bezier(.2,.9,.3,1);
+}
+
+/* Asegurar transición por defecto para card-inner (ya existe pero repetimos para robustez) */
+.project-card .card-inner, .card-inner { transition: transform .35s ease; }
+
+/* Enhanced nav toggle + nearby dropdown (used when a .nav-toggle button precedes .topmenu inside .topbar) */
+.topbar .nav-toggle{ margin-left:12px; background:transparent; border:0; padding:8px 10px; display:inline-flex; gap:8px; align-items:center; cursor:pointer; border-radius:8px; font-weight:600; color:var(--accent-strong) }
+.topbar .nav-toggle:focus{ outline:3px solid rgba(43,108,176,0.14); outline-offset:2px }
+.topbar .nav-toggle .icon{ width:22px; height:18px; position:relative; display:inline-block }
+.topbar .nav-toggle .bar{ position:absolute; left:0; right:0; height:2px; background:currentColor; border-radius:2px; transition: transform .28s cubic-bezier(.2,.9,.2,1), opacity .18s ease }
+.topbar .nav-toggle .bar.b1{ top:0 }
+.topbar .nav-toggle .bar.b2{ top:8px }
+.topbar .nav-toggle .bar.b3{ top:16px }
+.topbar .nav-toggle .label{ font-size:.95rem; color:var(--accent-strong) }
+.topbar .nav-toggle.open .b1{ transform: translateY(8px) rotate(45deg) }
+.topbar .nav-toggle.open .b2{ opacity:0 }
+.topbar .nav-toggle.open .b3{ transform: translateY(-8px) rotate(-45deg) }
+.topbar .nav-toggle.open .label{ color:var(--text) }
+
+/* Target only topmenu that follows a .nav-toggle inside .topbar so we don't overwrite other topmenu rules */
+.topbar .nav-toggle + .topmenu{ display:flex; visibility:hidden; opacity:0; transform:translateY(-8px) scale(.98); transition: transform .28s cubic-bezier(.2,.9,.2,1), opacity .22s ease, visibility .22s; pointer-events:none; position:absolute; top:100%; right:12px; gap:8px; align-items:center; padding:8px 12px; background:var(--card); border-radius:10px; box-shadow:0 10px 28px rgba(11,15,30,0.08); z-index:70; flex-wrap:nowrap }
+.topbar .nav-toggle + .topmenu ul{ display:flex; gap:8px; margin:0; padding:0; list-style:none }
+.topbar .nav-toggle + .topmenu a{ padding:8px 10px; border-radius:8px; text-decoration:none; color:var(--accent-strong) }
+.topbar .nav-toggle + .topmenu a:hover{ background:linear-gradient(90deg,#eef6ff,#f7fbff) }
+.topbar .nav-toggle + .topmenu.open{ visibility:visible; opacity:1; transform:translateY(6px) scale(1); pointer-events:auto }
+
+@media(max-width:700px){
+  .topbar .nav-toggle + .topmenu{ left:8px; right:8px; justify-content:center }
+  .topbar .nav-toggle + .topmenu ul{ flex-wrap:wrap; justify-content:center }
+}
+
+/* -----------------------------
+   Tipografía y elementos básicos
+   ----------------------------- */
+/* Encabezados */
+h1,h2,h3,h4,h5,h6{ font-family:inherit; color:var(--text); margin:0 0 .6rem; line-height:1.18 }
+h1{ font-size:1.9rem }
+h2{ font-size:1.4rem }
+h3{ font-size:1.15rem }
+/* Párrafos */
+p{ margin:0 0 1rem; color:var(--muted); font-size:1rem }
+
+/* Pequeñas utilidades */
+.lead{ font-size:1.05rem; color:var(--muted); margin-bottom:1rem }
+.small{ font-size:.9rem; color:var(--muted) }
+
+/* -----------------------------
+   Enlaces como botones (navegación / acciones)
+   ----------------------------- */
+/* .btn ya existe y aplica estilo principal; reforzamos estados */
+a.btn, button.btn, .btn{ display:inline-flex; align-items:center; gap:.4rem; justify-content:center }
+a.btn:focus, button.btn:focus, .btn:focus{ outline:3px solid rgba(43,108,176,0.18); outline-offset:3px }
+a.btn.secondary{ border:1px solid transparent }
+
+/* Hacer que los enlaces del menú horizontal parezcan botones discretos */
+.topmenu a{ display:inline-flex; align-items:center; padding:8px 10px; border-radius:8px; background:transparent }
+.topmenu a:hover, .topmenu a:focus{ background:linear-gradient(90deg,#eef6ff,#f7fbff); color:var(--accent-strong) }
+
+/* Enlaces en tarjetas */
+.card .card-actions a{ text-decoration:none }
+
+/* -----------------------------
+   Formularios (claros y accesibles)
+   ----------------------------- */
+label{ font-weight:600; color:var(--text); display:block; margin-bottom:6px }
+input[type="text"], input[type="email"], textarea, select{
+  width:100%; padding:10px 12px; border-radius:8px; border:1px solid #e6e9ee; background:var(--card); color:var(--text);
+}
+input:focus, textarea:focus, select:focus{ box-shadow:0 0 0 4px rgba(43,108,176,0.08); border-color:var(--accent-strong); outline:0 }
+
+/* Acciones del formulario */
+.form-actions .btn{ min-width:88px }
+
+/* Mensajes de ayuda / error (demo) */
+.help-text{ font-size:.9rem; color:var(--muted); margin-top:6px }
+.error{ color:#e03e3e }
+
+/* -----------------------------
+   Accesibilidad y estados (hover/focus/active)
+   ----------------------------- */
+a,button{ cursor:pointer }
+a:focus, button:focus{ outline-offset:3px }
+
+/* -----------------------------
+   Mejora responsiva ligera
+   ----------------------------- */
+@media(max-width:900px){
+  h1{ font-size:1.6rem }
+  .card{ padding:14px }
+}
+@media(max-width:700px){
+  .topmenu ul{ gap:6px; flex-wrap:wrap }
+  .brand-text{ font-size:14px }
+  .logo-img{ width:40px; height:40px }
+}
+
+/* Language switch button (flag) placed next to dark mode button */
+.lang-btn{ background:transparent; border:0; font-size:18px; cursor:pointer; padding:6px 8px; border-radius:8px; display:inline-flex; align-items:center; gap:8px }
+.lang-btn:focus{ outline:3px solid rgba(43,108,176,0.14); outline-offset:2px }
+.lang-btn .flag{ font-size:18px; line-height:1 }
+.lang-btn .label{ font-size:.95rem; color:var(--accent-strong); font-weight:600 }
+.lang-btn.active .label{ color:var(--text) }
+
+/* -----------------------------
+   Fin de añadidos de estructura y estilo
+   ----------------------------- */
+/* ...existing code... */
+.btn-footer {
+  background: var(--accent);
+  color: #fff !important;
+  border-radius: 8px;
+  padding: 7px 18px;
+  font-size: 1rem;
+  font-weight: 600;
+  margin-left: 8px;
+  transition: background .18s, color .18s, box-shadow .18s, transform .18s;
+  box-shadow: 0 2px 8px rgba(43,108,176,0.08);
+  text-decoration: none;
+  display: inline-block;
+}
+.btn-footer:hover, .btn-footer:focus {
+  background: var(--accent-strong);
+  color: #fff !important;
+  box-shadow: 0 4px 16px rgba(43,108,176,0.16);
+  transform: translateY(-2px) scale(1.04);
+  outline: 0;
+}
+body.oscuro .btn-footer {
+  background: var(--accent);
+  color: #111 !important;
+}
+body.oscuro .btn-footer:hover, body.oscuro .btn-footer:focus {
+  background: var(--accent-strong);
+  color: #fff !important;
+  box-shadow: 0 4px 16px rgba(110,168,255,0.18);
+}
+@media (max-width:700px){
+  .btn-footer {
+    font-size: 0.97rem;
+    padding: 10px 0;
+    width: 100%;
+    border-radius: 10px;
+    margin-left: 0;
+    margin-top: 8px;
+  }
+}

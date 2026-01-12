@@ -25,14 +25,14 @@
   <header>
     <div class="topbar">
       <img src="logofran.jpg" alt="Logo" class="logo-img" />
-      <div class="brand-text">Fran - Proyecto 1</div>
+      <div class="brand-text" id="brand-text">Fran - Proyecto 1</div>
       <nav class="topmenu" id="topmenu" aria-label="Menú principal">
         <ul>
-          <li><a href="./index.html">Inicio</a></li>
-          <li><a href="./proyecto1.html">Proyecto 1</a></li>
-          <li><a href="./proyecto2.html">Proyecto 2</a></li>
-          <li><a href="./listadoproyecto.html">Listado</a></li>
-          <li><a href="./formulario.html">Contacto</a></li>
+          <li><a href="./index.html" id="nav-inicio">Inicio</a></li>
+          <li><a href="./proyecto1.html" id="nav-p1">Proyecto 1</a></li>
+          <li><a href="./proyecto2.html" id="nav-p2">Proyecto 2</a></li>
+          <li><a href="./listadoproyecto.html" id="nav-listado">Listado</a></li>
+          <li><a href="./formulario.html" id="nav-contacto">Contacto</a></li>
         </ul>
       </nav>
       <div class="actions-right">
@@ -144,7 +144,12 @@
           github: '🐙 GitHub',
           footer: '© 2025 Fran • Project 1',
           figcaption: 'Representative screenshot of the project — enlarged view',
-          detail: 'View detail'
+          detail: 'View detail',
+          nav_inicio: 'Home',
+          nav_p1: 'Project 1',
+          nav_p2: 'Project 2',
+          nav_listado: 'Project list',
+          nav_contacto: 'Contact'
         },
         es: {
           title: 'Proyecto 1 - Fran',
@@ -167,12 +172,17 @@
           github: '🐙 GitHub',
           footer: '© 2025 Fran • Proyecto 1',
           figcaption: 'Captura representativa del proyecto — vista ampliada',
-          detail: 'Ver detalle'
+          detail: 'Ver detalle',
+          nav_inicio: 'Inicio',
+          nav_p1: 'Proyecto 1',
+          nav_p2: 'Proyecto 2',
+          nav_listado: 'Listado',
+          nav_contacto: 'Contacto'
         }
       };
       const t = translations[lang] || translations.es;
       document.title = t.title;
-      document.querySelector('.brand-text') && (document.querySelector('.brand-text').textContent = t.brand);
+      document.getElementById('brand-text') && (document.getElementById('brand-text').textContent = t.brand);
       document.querySelector('h1') && (document.querySelector('h1').textContent = t.h1);
       document.querySelector('.lead') && (document.querySelector('.lead').textContent = t.lead);
       document.querySelector('h3') && (document.querySelector('h3').textContent = t.features);
@@ -195,6 +205,11 @@
       document.getElementById('feat2') && (document.getElementById('feat2').textContent = t.f2);
       document.getElementById('feat3') && (document.getElementById('feat3').textContent = t.f3);
       document.getElementById('feat4') && (document.getElementById('feat4').textContent = t.f4);
+      document.getElementById('nav-inicio') && (document.getElementById('nav-inicio').textContent = t.nav_inicio);
+      document.getElementById('nav-p1') && (document.getElementById('nav-p1').textContent = t.nav_p1);
+      document.getElementById('nav-p2') && (document.getElementById('nav-p2').textContent = t.nav_p2);
+      document.getElementById('nav-listado') && (document.getElementById('nav-listado').textContent = t.nav_listado);
+      document.getElementById('nav-contacto') && (document.getElementById('nav-contacto').textContent = t.nav_contacto);
     }
     applyLangFromStorage();
     if(langToggle){

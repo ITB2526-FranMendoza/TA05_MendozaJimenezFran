@@ -11,14 +11,14 @@
   <header>
     <div class="topbar">
       <img src="logofran.jpg" alt="Logo" class="logo-img" />
-      <div class="brand-text">Fran - Proyectos</div>
+      <div class="brand-text" id="brand-text">Fran - Proyectos</div>
       <nav class="topmenu" id="topmenu" aria-label="Menú principal">
         <ul>
-          <li><a href="index.html">Inicio</a></li>
-          <li><a href="proyecto1.html">Proyecto 1</a></li>
-          <li><a href="proyecto2.html">Proyecto 2</a></li>
-          <li><a href="listadoproyecto.html">Listado</a></li>
-          <li><a href="formulario.html">Contacto</a></li>
+          <li><a href="index.html" id="nav-inicio">Inicio</a></li>
+          <li><a href="proyecto1.html" id="nav-p1">Proyecto 1</a></li>
+          <li><a href="proyecto2.html" id="nav-p2">Proyecto 2</a></li>
+          <li><a href="listadoproyecto.html" id="nav-listado">Listado</a></li>
+          <li><a href="formulario.html" id="nav-contacto">Contacto</a></li>
         </ul>
       </nav>
       <div class="actions-right">
@@ -44,82 +44,6 @@
   <script>
     // --- TRADUCCIONES Y DATOS DE PROYECTOS ---
     const translations = {
-      es: {
-        title: 'Listado de proyectos - Fran',
-        brand: 'Fran - Proyectos',
-        h1: 'Listado de proyectos',
-        desc: 'Aquí tienes una vista clara y visual de los proyectos del grupo. Haz click en el primero para ir a su página de detalle.',
-        search: 'Buscar proyecto... / Search project...',
-        footer: '© 2025 Fran • Listado de proyectos',
-        authors: 'Autores:',
-        duration: 'Duración:',
-        techs: 'Tecnologías:',
-        weeks2: '2 semanas',
-        weeks3: '3 semanas',
-        htmlcssjs: 'HTML, CSS, JS',
-        detail: 'Ver detalle',
-        // Proyectos 1-30
-        p1: 'Proyecto 1 — Mini App de Galería',
-        p1desc: 'Galería responsive con pequeñas interacciones. Perfecto como primer proyecto para mostrar diseño y maquetación.',
-        p2: 'Proyecto 2 — Interacción y animaciones',
-        p2desc: 'Ejemplos de animaciones, respuesta a eventos y componentes sencillos para mejorar la experiencia de usuario.',
-        p3: 'Proyecto 3 — Dashboard de Tareas',
-        p3desc: 'Aplicación sencilla para gestionar tareas y listas. Incluye filtros, edición y almacenamiento local.',
-        p4: 'Proyecto 4 — Blog Personal',
-        p4desc: 'Blog estático con posts, categorías y buscador. Diseño limpio y adaptable a móvil.',
-        p5: 'Proyecto 5 — Portfolio Animado',
-        p5desc: 'Portfolio personal con animaciones, efectos visuales y sección de contacto interactiva.',
-        p6: 'Proyecto 6 — Landing E-commerce',
-        p6desc: 'Página de aterrizaje para tienda online, con destacados de productos, testimonios y experiencia de compra moderna.',
-        p7: 'Proyecto 7 — App del Tiempo',
-        p7desc: 'Aplicación de previsión meteorológica con geolocalización, fondos dinámicos y datos en tiempo real.',
-        p8: 'Proyecto 8 — Buscador de Recetas',
-        p8desc: 'Busca y descubre recetas por ingredientes, con filtros y datos nutricionales.',
-        p9: 'Proyecto 9 — Seguimiento Fitness',
-        p9desc: 'Registra entrenamientos, fija objetivos y visualiza el progreso con gráficos interactivos.',
-        p10: 'Proyecto 10 — Calendario de Eventos',
-        p10desc: 'Calendario interactivo para gestionar eventos, recordatorios e invitaciones.',
-        p11: 'Proyecto 11 — Portfolio en Grid',
-        p11desc: 'Portfolio en cuadrícula para mostrar trabajos creativos con categorías filtrables.',
-        p12: 'Proyecto 12 — Gestor de Finanzas',
-        p12desc: 'Panel de finanzas personales para controlar gastos, presupuestos y ahorros.',
-        p13: 'Proyecto 13 — Quiz de Idiomas',
-        p13desc: 'App de preguntas para practicar vocabulario y gramática en varios idiomas.',
-        p14: 'Proyecto 14 — Reproductor de Música',
-        p14desc: 'Reproductor musical web con listas, modo aleatorio y controles responsivos.',
-        p15: 'Proyecto 15 — Blog de Viajes',
-        p15desc: 'Historias de viaje, galerías de fotos y mapas interactivos de destinos.',
-        p16: 'Proyecto 16 — CV Online',
-        p16desc: 'Currículum online profesional con descarga en PDF y formulario de contacto.',
-        p17: 'Proyecto 17 — Base de Películas',
-        p17desc: 'Consulta y busca películas, con valoraciones, tráilers y reseñas.',
-        p18: 'Proyecto 18 — Galería de Arte',
-        p18desc: 'Galería de arte virtual con perfiles de artistas y calendario de exposiciones.',
-        p19: 'Proyecto 19 — Temporizador Meditación',
-        p19desc: 'Temporizador de meditación personalizable con sonidos relajantes y seguimiento.',
-        p20: 'Proyecto 20 — Adopción de Mascotas',
-        p20desc: 'Plataforma para encontrar y adoptar mascotas, con filtros e historias de adopción.',
-        p21: 'Proyecto 21 — Club de Lectura',
-        p21desc: 'Sitio para club de lectura con listas, reseñas y foros de discusión.',
-        p22: 'Proyecto 22 — Landing Startup',
-        p22desc: 'Landing page para startup tecnológica, con características y equipo.',
-        p23: 'Proyecto 23 — Quiz Batalla',
-        p23desc: 'Juego de preguntas multijugador con marcadores en tiempo real y temáticas.',
-        p24: 'Proyecto 24 — Cuida tus Plantas',
-        p24desc: 'Guía para el cuidado de plantas, recordatorios de riego e identificación.',
-        p25: 'Proyecto 25 — Generador de CV',
-        p25desc: 'Generador de currículum interactivo con plantillas y exportación.',
-        p26: 'Proyecto 26 — Delivery de Comida',
-        p26desc: 'App de entrega de comida con restaurantes, menús y seguimiento de pedidos.',
-        p27: 'Proyecto 27 — Aula Virtual',
-        p27desc: 'Aula online para clases, tareas y seguimiento de estudiantes.',
-        p28: 'Proyecto 28 — Alquiler de Coches',
-        p28desc: 'Plataforma de alquiler de coches con calendario y filtros de vehículos.',
-        p29: 'Proyecto 29 — Plataforma Solidaria',
-        p29desc: 'Plataforma para descubrir, apoyar y seguir proyectos solidarios.',
-        p30: 'Proyecto 30 — Agregador de Noticias',
-        p30desc: 'Agrega noticias de varias fuentes con filtros temáticos y resúmenes.'
-      },
       en: {
         title: 'Project list - Fran',
         brand: 'Fran - Projects',
@@ -194,7 +118,93 @@
         p29: 'Project 29 — Solidarity Platform',
         p29desc: 'Platform to discover, support and follow solidarity projects.',
         p30: 'Project 30 — News Aggregator',
-        p30desc: 'Aggregates news from various sources with thematic filters and summaries.'
+        p30desc: 'Aggregates news from various sources with thematic filters and summaries.',
+        nav_inicio: 'Home',
+        nav_p1: 'Project 1',
+        nav_p2: 'Project 2',
+        nav_listado: 'Project list',
+        nav_contacto: 'Contact'
+      },
+      es: {
+        title: 'Listado de proyectos - Fran',
+        brand: 'Fran - Proyectos',
+        h1: 'Listado de proyectos',
+        desc: 'Aquí tienes una vista clara y visual de los proyectos del grupo. Haz click en el primero para ir a su página de detalle.',
+        search: 'Buscar proyecto... / Search project...',
+        footer: '© 2025 Fran • Listado de proyectos',
+        authors: 'Autores:',
+        duration: 'Duración:',
+        techs: 'Tecnologías:',
+        weeks2: '2 semanas',
+        weeks3: '3 semanas',
+        htmlcssjs: 'HTML, CSS, JS',
+        detail: 'Ver detalle',
+        // Proyectos 1-30
+        p1: 'Proyecto 1 — Mini App de Galería',
+        p1desc: 'Galería responsive con pequeñas interacciones. Perfecto como primer proyecto para mostrar diseño y maquetación.',
+        p2: 'Proyecto 2 — Interacción y animaciones',
+        p2desc: 'Ejemplos de animaciones, respuesta a eventos y componentes sencillos para mejorar la experiencia de usuario.',
+        p3: 'Proyecto 3 — Dashboard de Tareas',
+        p3desc: 'Aplicación sencilla para gestionar tareas y listas. Incluye filtros, edición y almacenamiento local.',
+        p4: 'Proyecto 4 — Blog Personal',
+        p4desc: 'Blog estático con posts, categorías y buscador. Diseño limpio y adaptable a móvil.',
+        p5: 'Proyecto 5 — Portfolio Animado',
+        p5desc: 'Portfolio personal con animaciones, efectos visuales y sección de contacto interactiva.',
+        p6: 'Proyecto 6 — Landing E-commerce',
+        p6desc: 'Página de aterrizaje para tienda online, con destacados de productos, testimonios y experiencia de compra moderna.',
+        p7: 'Proyecto 7 — App del Tiempo',
+        p7desc: 'Aplicación de previsión meteorológica con geolocalización, fondos dinámicos y datos en tiempo real.',
+        p8: 'Proyecto 8 — Buscador de Recetas',
+        p8desc: 'Busca y descubre recetas por ingredientes, con filtros y datos nutricionales.',
+        p9: 'Proyecto 9 — Seguimiento Fitness',
+        p9desc: 'Registra entrenamientos, fija objetivos y visualiza el progreso con gráficos interactivos.',
+        p10: 'Proyecto 10 — Calendario de Eventos',
+        p10desc: 'Calendario interactivo para gestionar eventos, recordatorios e invitaciones.',
+        p11: 'Proyecto 11 — Portfolio en Grid',
+        p11desc: 'Portfolio en cuadrícula para mostrar trabajos creativos con categorías filtrables.',
+        p12: 'Proyecto 12 — Gestor de Finanzas',
+        p12desc: 'Panel de finanzas personales para controlar gastos, presupuestos y ahorros.',
+        p13: 'Proyecto 13 — Quiz de Idiomas',
+        p13desc: 'App de preguntas para practicar vocabulario y gramática en varios idiomas.',
+        p14: 'Proyecto 14 — Reproductor de Música',
+        p14desc: 'Reproductor musical web con listas, modo aleatorio y controles responsivos.',
+        p15: 'Proyecto 15 — Blog de Viajes',
+        p15desc: 'Historias de viaje, galerías de fotos y mapas interactivos de destinos.',
+        p16: 'Proyecto 16 — CV Online',
+        p16desc: 'Currículum online profesional con descarga en PDF y formulario de contacto.',
+        p17: 'Proyecto 17 — Base de Películas',
+        p17desc: 'Consulta y busca películas, con valoraciones, tráilers y reseñas.',
+        p18: 'Proyecto 18 — Galería de Arte',
+        p18desc: 'Galería de arte virtual con perfiles de artistas y calendario de exposiciones.',
+        p19: 'Proyecto 19 — Temporizador Meditación',
+        p19desc: 'Temporizador de meditación personalizable con sonidos relajantes y seguimiento.',
+        p20: 'Proyecto 20 — Adopción de Mascotas',
+        p20desc: 'Plataforma para encontrar y adoptar mascotas, con filtros e historias de adopción.',
+        p21: 'Proyecto 21 — Club de Lectura',
+        p21desc: 'Sitio para club de lectura con listas, reseñas y foros de discusión.',
+        p22: 'Proyecto 22 — Landing Startup',
+        p22desc: 'Landing page para startup tecnológica, con características y equipo.',
+        p23: 'Proyecto 23 — Quiz Batalla',
+        p23desc: 'Juego de preguntas multijugador con marcadores en tiempo real y temáticas.',
+        p24: 'Proyecto 24 — Cuida tus Plantas',
+        p24desc: 'Guía para el cuidado de plantas, recordatorios de riego e identificación.',
+        p25: 'Proyecto 25 — Generador de CV',
+        p25desc: 'Generador de currículum interactivo con plantillas y exportación.',
+        p26: 'Proyecto 26 — Delivery de Comida',
+        p26desc: 'App de entrega de comida con restaurantes, menús y seguimiento de pedidos.',
+        p27: 'Proyecto 27 — Aula Virtual',
+        p27desc: 'Aula online para clases, tareas y seguimiento de estudiantes.',
+        p28: 'Proyecto 28 — Alquiler de Coches',
+        p28desc: 'Plataforma de alquiler de coches con calendario y filtros de vehículos.',
+        p29: 'Proyecto 29 — Plataforma Solidaria',
+        p29desc: 'Plataforma para descubrir, apoyar y seguir proyectos solidarios.',
+        p30: 'Proyecto 30 — Agregador de Noticias',
+        p30desc: 'Agrega noticias de varias fuentes con filtros temáticos y resúmenes.',
+        nav_inicio: 'Inicio',
+        nav_p1: 'Proyecto 1',
+        nav_p2: 'Proyecto 2',
+        nav_listado: 'Listado',
+        nav_contacto: 'Contacto'
       }
     };
     // --- DATOS DE PROYECTOS ---
@@ -259,11 +269,16 @@
       if(lang === 'en'){ flag.textContent = '🇬🇧'; label.textContent = 'EN'; langToggle.classList.add('active'); } else { flag.textContent = '🇪🇸'; label.textContent = 'ES'; langToggle.classList.remove('active'); }
       const t = translations[lang] || translations.es;
       document.title = t.title;
-      document.querySelector('.brand-text') && (document.querySelector('.brand-text').textContent = t.brand);
+      document.getElementById('brand-text') && (document.getElementById('brand-text').textContent = t.brand);
       document.querySelector('h1') && (document.querySelector('h1').textContent = t.h1);
       document.querySelector('p.muted') && (document.querySelector('p.muted').textContent = t.desc);
       document.getElementById('projectSearch') && (document.getElementById('projectSearch').placeholder = t.search);
       document.querySelector('footer small') && (document.querySelector('footer small').textContent = t.footer);
+      document.getElementById('nav-inicio') && (document.getElementById('nav-inicio').textContent = t.nav_inicio);
+      document.getElementById('nav-p1') && (document.getElementById('nav-p1').textContent = t.nav_p1);
+      document.getElementById('nav-p2') && (document.getElementById('nav-p2').textContent = t.nav_p2);
+      document.getElementById('nav-listado') && (document.getElementById('nav-listado').textContent = t.nav_listado);
+      document.getElementById('nav-contacto') && (document.getElementById('nav-contacto').textContent = t.nav_contacto);
       renderProjects(lang, document.getElementById('projectSearch')?.value.trim().toLowerCase()||'');
     }
     applyLangFromStorage();

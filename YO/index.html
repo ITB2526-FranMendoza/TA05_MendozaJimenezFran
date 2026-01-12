@@ -42,14 +42,14 @@
     <header>
         <div class="topbar">
             <img src="logofran.jpg" alt="Logo" class="logo-img" />
-            <div class="brand-text">Fran - Portfolio</div>
+            <div class="brand-text" id="brand-text">Fran - Portfolio</div>
             <nav class="topmenu" id="topmenu" aria-label="Menú principal">
                 <ul>
-                    <li><a href="index.html">Inicio</a></li>
-                    <li><a href="proyecto1.html">Proyecto 1</a></li>
-                    <li><a href="proyecto2.html">Proyecto 2</a></li>
-                    <li><a href="listadoproyecto.html">Listado</a></li>
-                    <li><a href="formulario.html">Contacto</a></li>
+                    <li><a href="index.html" id="nav-inicio">Inicio</a></li>
+                    <li><a href="proyecto1.html" id="nav-p1">Proyecto 1</a></li>
+                    <li><a href="proyecto2.html" id="nav-p2">Proyecto 2</a></li>
+                    <li><a href="listadoproyecto.html" id="nav-listado">Listado</a></li>
+                    <li><a href="formulario.html" id="nav-contacto">Contacto</a></li>
                 </ul>
             </nav>
             <div class="actions-right">
@@ -135,7 +135,12 @@
                     gmail: '📧 Gmail',
                     github: '🐙 GitHub',
                     note: '(Change the links to your personal profiles)',
-                    footer: '© 2025 Fran. Portfolio • fran.mendoza.7e7@itb.cat'
+                    footer: '© 2025 Fran. Portfolio • fran.mendoza.7e7@itb.cat',
+                    nav_inicio: 'Home',
+                    nav_p1: 'Project 1',
+                    nav_p2: 'Project 2',
+                    nav_listado: 'Project list',
+                    nav_contacto: 'Contact',
                 },
                 es: {
                     title: 'Portfolio - Fran',
@@ -152,12 +157,17 @@
                     gmail: '📧 Gmail',
                     github: '🐙 GitHub',
                     note: '(Cambia los enlaces por tus perfiles personales)',
-                    footer: '© 2025 Fran. Portfolio • fran.mendoza.7e7@itb.cat'
+                    footer: '© 2025 Fran. Portfolio • fran.mendoza.7e7@itb.cat',
+                    nav_inicio: 'Inicio',
+                    nav_p1: 'Proyecto 1',
+                    nav_p2: 'Proyecto 2',
+                    nav_listado: 'Listado',
+                    nav_contacto: 'Contacto',
                 }
             };
             const t = translations[lang] || translations.es;
             document.title = t.title;
-            document.querySelector('.brand-text') && (document.querySelector('.brand-text').textContent = t.brand);
+            document.getElementById('brand-text') && (document.getElementById('brand-text').textContent = t.brand);
             document.querySelector('h1') && (document.querySelector('h1').textContent = t.h1);
             document.getElementById('desc-main') && (document.getElementById('desc-main').textContent = t.desc);
             document.getElementById('p1-title') && (document.getElementById('p1-title').textContent = t.p1);
@@ -177,6 +187,11 @@
             document.querySelector('#card2 .btn') && (document.querySelector('#card2 .btn').textContent = t.detail);
             document.querySelector('#card1 span') && (document.querySelector('#card1 span').innerHTML = `<strong>${t.authors}</strong> Fran Mendoza`);
             document.querySelector('#card2 span') && (document.querySelector('#card2 span').innerHTML = `<strong>${t.authors}</strong> Fran Mendoza`);
+            document.getElementById('nav-inicio') && (document.getElementById('nav-inicio').textContent = t.nav_inicio);
+            document.getElementById('nav-p1') && (document.getElementById('nav-p1').textContent = t.nav_p1);
+            document.getElementById('nav-p2') && (document.getElementById('nav-p2').textContent = t.nav_p2);
+            document.getElementById('nav-listado') && (document.getElementById('nav-listado').textContent = t.nav_listado);
+            document.getElementById('nav-contacto') && (document.getElementById('nav-contacto').textContent = t.nav_contacto);
         }
         applyLangFromStorage();
         if(langToggle){

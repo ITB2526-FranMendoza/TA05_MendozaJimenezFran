@@ -7,25 +7,43 @@
   <link rel="stylesheet" href="./styles.css">
   <link rel="icon" type="image/png" href="logofran.jpg">
   <style>
-    /* Layout para Proyecto 2: información a la izquierda, fotos a la derecha */
-    .project-layout{display:flex;gap:20px;align-items:flex-start;flex-direction:row}
-    .project-media{width:48%;max-width:520px;flex:0 0 48%}
-    .project-info{width:52%;flex:1 1 52%}
-    .preview-thumbs{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
-    .preview-thumbs img{width:calc(50% - 4px);border-radius:8px;display:block}
-
-    @media (max-width:780px){
-      .project-layout{flex-direction:column}
-      .project-media,.project-info{width:100%;flex:0 0 auto}
-      .preview-thumbs img{width:calc(33.333% - 5.33px)}
-    }
-  </style>
+      /* Layout para Proyecto 2: información a la izquierda, fotos a la derecha */
+      .project-layout{display:flex;gap:20px;align-items:flex-start;flex-direction:row}
+      .project-media{width:48%;max-width:520px;flex:0 0 48%}
+      .project-info{width:52%;flex:1 1 52%}
+      .preview-thumbs{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+      .preview-thumbs img{width:calc(50% - 4px);border-radius:8px;display:block}
+      @media (max-width:900px){
+        .topbar, .topmenu ul { flex-direction: column !important; align-items: stretch !important; }
+        .topmenu ul { gap: 0.5em; }
+        .topmenu li { width: 100%; }
+        .topmenu a { display: block; width: 100%; text-align: left; padding: 12px 18px; }
+        .actions-right { margin-top: 10px; }
+        .project-layout { flex-direction: column !important; }
+        .project-media, .project-info { width: 100% !important; }
+      }
+      @media (max-width:780px){
+        .project-layout{flex-direction:column}
+        .project-media,.project-info{width:100%;flex:0 0 auto}
+        .preview-thumbs img{width:calc(33.333% - 5.33px)}
+      }
+      @media (max-width:600px){
+        .topbar, .topmenu ul { flex-direction: column !important; align-items: stretch !important; }
+        .topmenu ul { gap: 0.5em; }
+        .topmenu li { width: 100%; }
+        .topmenu a { display: block; width: 100%; text-align: left; padding: 12px 18px; font-size: 1.1em; }
+        .brand-text { font-size: 1.1em; }
+        .project-layout { flex-direction: column !important; }
+        .project-media, .project-info { width: 100% !important; }
+        .card { padding: 10px 4px; }
+      }
+    </style>
 </head>
 <body>
   <header>
     <div class="topbar">
       <img src="logofran.jpg" alt="Logo" class="logo-img" />
-      <div class="brand-text">Fran - Proyecto 2</div>
+      <div class="brand-text" id="brand-text">Fran - Proyecto 2</div>
       <nav class="topmenu" id="topmenu" aria-label="Menú principal">
         <ul>
           <li><a href="index.html" id="nav-inicio">Inicio</a></li>
@@ -134,7 +152,7 @@
           nav_p1: 'Project 1',
           nav_p2: 'Project 2',
           nav_listado: 'Project list',
-          nav_contacto: 'Contact'
+          nav_contacto: 'Contact',
         },
         es: {
           title: 'Proyecto 2 - Fran',
@@ -158,12 +176,12 @@
           nav_p1: 'Proyecto 1',
           nav_p2: 'Proyecto 2',
           nav_listado: 'Listado',
-          nav_contacto: 'Contacto'
+          nav_contacto: 'Contacto',
         }
       };
       const t = translations[lang] || translations.es;
       document.title = t.title;
-      document.querySelector('.brand-text') && (document.querySelector('.brand-text').textContent = t.brand);
+      document.getElementById('brand-text') && (document.getElementById('brand-text').textContent = t.brand);
       document.querySelector('h1') && (document.querySelector('h1').textContent = t.h1);
       document.querySelector('p.muted') && (document.querySelector('p.muted').textContent = t.desc);
       document.querySelector('h3') && (document.querySelector('h3').textContent = t.short);

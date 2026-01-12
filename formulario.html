@@ -7,85 +7,59 @@
   <link rel="icon" type="image/png" href="logofran.jpg">
   <link rel="stylesheet" href="./styles.css">
   <style>
+    /* --- RESET Y BASE --- */
+    html, body { height: 100%; margin: 0; padding: 0; }
+    body { min-height: 100vh; }
+    main { max-width: 900px; margin: 28px auto; padding: 0 16px; }
+    .card { background: var(--card, #fff); border-radius: 10px; box-shadow: 0 6px 18px rgba(11,15,30,0.04); padding: 18px; }
+    /* --- NAV ALWAYS HORIZONTAL, NO WRAP --- */
+    .topbar { display: flex; align-items: center; gap: 12px; padding: 12px 16px; background: var(--card, #fff); border-bottom: 1px solid #e6e9ee; position: sticky; top: 0; z-index: 40; }
+    .logo-img { width: 46px; height: 46px; object-fit: cover; border-radius: 8px; background: #eef2ff; }
+    .brand-text { font-weight: 700; color: var(--accent, #2b6cb0); font-size: 1.15em; }
+    .topmenu { margin-left: 12px; display: flex !important; gap: 8px; align-items: center; flex: 1 1 auto; }
+    .topmenu ul { display: flex; gap: 8px; list-style: none; margin: 0; padding: 0; width: 100%; }
+    .topmenu li { width: auto; }
+    .topmenu a { padding: 8px 10px; border-radius: 8px; text-decoration: none; color: var(--accent-strong, #1f4f80); background: transparent; display: inline-flex; align-items: center; }
+    .topmenu a:hover, .topmenu a:focus { background: linear-gradient(90deg,#eef6ff,#f7fbff); color: var(--accent-strong, #1f4f80); }
+    .actions-right { margin-left: auto; display: flex; gap: 8px; align-items: center; }
+    /* --- FORMULARIO --- */
+    form#contactForm { background: none; box-shadow: none; padding: 0; margin: 0; }
+    form#contactForm label { font-size: 1em; margin-bottom: 4px; margin-top: 12px; font-weight: 600; color: var(--text, #111); }
+    form#contactForm input,
+    form#contactForm textarea {
+      width: 100%; min-width: 0; box-sizing: border-box; font-size: 1em; padding: 14px 12px; margin-bottom: 12px; border-radius: 8px; border: 1.5px solid #dbeafe; background: #fff; color: var(--text, #111); transition: border .18s; }
+    body.oscuro form#contactForm input,
+    body.oscuro form#contactForm textarea { background: #0b1220; color: #e6eef8; border: 1.5px solid #23304a; }
+    form#contactForm textarea { resize: vertical; min-height: 120px; }
+    .form-actions { display: flex; gap: 14px; margin-top: 18px; justify-content: flex-start; }
+    .form-actions .btn { min-width: 120px; padding: 14px 0; font-size: 1em; }
     @media (max-width: 900px) {
       .topbar, .topmenu ul { flex-direction: column !important; align-items: stretch !important; }
-      .topmenu ul { gap: 0.5em; }
+      .topmenu ul { gap: 0.5em; width: 100%; }
       .topmenu li { width: 100%; }
       .topmenu a { display: block; width: 100%; text-align: left; padding: 12px 18px; }
       .actions-right { margin-top: 10px; }
+      .brand-text { font-size: 1.05em; }
       .card { padding: 12px 4px; }
     }
     @media (max-width: 700px) {
       .topbar, .topmenu ul { flex-direction: column !important; align-items: stretch !important; }
-      .topmenu ul { gap: 0.5em; }
+      .topmenu ul { gap: 0.5em; width: 100%; }
       .topmenu li { width: 100%; }
       .topmenu a { display: block; width: 100%; text-align: left; padding: 12px 18px; font-size: 1.1em; }
-      .brand-text { font-size: 1.1em; }
+      .brand-text { font-size: 1em; }
       .card { padding: 8px 2px; box-shadow: none; }
       main { padding: 0 2px !important; }
-      form#contactForm {
-        padding: 0;
-        margin: 0;
-        background: transparent;
-        box-shadow: none;
-      }
-      form#contactForm label {
-        font-size: 1em;
-        margin-bottom: 4px;
-        margin-top: 12px;
-      }
+      form#contactForm label { font-size: 1em; margin-bottom: 4px; margin-top: 12px; }
       form#contactForm input,
-      form#contactForm textarea {
-        width: 100% !important;
-        min-width: 0;
-        box-sizing: border-box;
-        font-size: 1em;
-        padding: 14px 12px;
-        margin-bottom: 12px;
-        border-radius: 8px;
-        border: 1.5px solid #dbeafe;
-        background: #fff;
-      }
-      body.oscuro form#contactForm input,
-      body.oscuro form#contactForm textarea {
-        background: #0b1220;
-        color: #e6eef8;
-        border: 1.5px solid #23304a;
-      }
-      form#contactForm textarea {
-        resize: vertical;
-        min-height: 120px;
-      }
-      .form-actions {
-        display: flex;
-        flex-direction: column;
-        gap: 12px;
-        margin-top: 18px;
-      }
-      .form-actions .btn {
-        width: 100%;
-        font-size: 1.1em;
-        padding: 16px 0;
-      }
+      form#contactForm textarea { font-size: 1em; padding: 14px 12px; margin-bottom: 12px; border-radius: 8px; }
+      .form-actions { flex-direction: column; gap: 12px; margin-top: 18px; }
+      .form-actions .btn { width: 100%; font-size: 1.1em; padding: 16px 0; min-width: 0; }
     }
-    /* Mejoras generales para inputs y botones en todos los tamaños */
-    form#contactForm input,
-    form#contactForm textarea {
-      width: 100%;
-      box-sizing: border-box;
-      margin-bottom: 12px;
-      font-size: 1.05em;
-    }
-    .form-actions {
-      display: flex;
-      gap: 14px;
-      margin-top: 18px;
-      justify-content: flex-start;
-    }
-    .form-actions .btn {
-      min-width: 120px;
-      padding: 14px 0;
-      font-size: 1em;
+    @media (max-width: 500px) {
+      .brand-text { font-size: 0.95em; }
+      .card { padding: 6px 1px; }
+      .logo-img { width: 38px; height: 38px; }
     }
   </style>
 </head>
@@ -108,7 +82,7 @@
     </div>
   </header>
 
-  <main style="max-width:900px;margin:28px auto;padding:0 16px">
+  <main>
     <article class="card">
       <h1>Formulario de contacto</h1>
       <p class="muted">Rellena el formulario y pulsa enviar. Es un ejemplo; aquí no se envía realmente nada al servidor.</p>

@@ -66,22 +66,21 @@
         <p class="lead">Descripción definitiva: app de galería con miniaturas, modal accesible y lazy-loading. Diseñada para funcionamiento fluido en móvil y escritorio, con atención a la accesibilidad y rendimiento.</p>
 
         <section>
-          <h3>Características principales</h3>
+          <h3 id="tech-title">Tecnologías</h3>
+          <p class="muted" id="tech-desc">HTML5, CSS3 (flex/grid), JavaScript (DOM y accesibilidad). Implementación ligera sin frameworks.</p>
           <ul>
-            <li>Miniaturas con navegación y selección por teclado.</li>
-            <li>Modal ampliable con controles prev/next y cierre con Esc.</li>
-            <li>Imágenes optimizadas y lazy-loading progresivo.</li>
-            <li>Interfaz responsiva y controles táctiles para móviles.</li>
+            <li id="tech1">HTML semántico y ARIA donde procede.</li>
+            <li id="tech2">CSS variables y transiciones suaves.</li>
+            <li id="tech3">JavaScript para modal y lazy-load.</li>
           </ul>
         </section>
-
         <section>
-          <h3>Tecnologías</h3>
-          <p class="muted">HTML5, CSS3 (flex/grid), JavaScript (DOM y accesibilidad). Implementación ligera sin frameworks.</p>
+          <h3 id="features-title">Características principales</h3>
           <ul>
-            <li>HTML semántico y ARIA donde procede.</li>
-            <li>CSS variables y transiciones suaves.</li>
-            <li>JavaScript para modal y lazy-load.</li>
+            <li id="feat1">Miniaturas con navegación y selección por teclado.</li>
+            <li id="feat2">Modal ampliable con controles prev/next y cierre con Esc.</li>
+            <li id="feat3">Imágenes optimizadas y lazy-loading progresivo.</li>
+            <li id="feat4">Interfaz responsiva y controles táctiles para móviles.</li>
           </ul>
         </section>
 
@@ -129,16 +128,16 @@
           brand: 'Fran - Project 1',
           h1: 'Project 1 — Gallery Mini App',
           lead: 'Definitive description: gallery app with thumbnails, accessible modal and lazy-loading. Designed for smooth operation on mobile and desktop, with attention to accessibility and performance.',
-          features: 'Main features',
-          f1: 'Thumbnails with navigation and keyboard selection.',
-          f2: 'Expandable modal with prev/next controls and Esc close.',
-          f3: 'Optimized images and progressive lazy-loading.',
-          f4: 'Responsive interface and touch controls for mobile.',
           tech: 'Technologies',
           tdesc: 'HTML5, CSS3 (flex/grid), JavaScript (DOM and accessibility). Lightweight implementation without frameworks.',
           t1: 'Semantic HTML and ARIA where appropriate.',
           t2: 'CSS variables and smooth transitions.',
           t3: 'JavaScript for modal and lazy-load.',
+          features: 'Main features',
+          f1: 'Thumbnails with navigation and keyboard selection.',
+          f2: 'Expandable modal with prev/next controls and Esc close.',
+          f3: 'Optimized images and progressive lazy-loading.',
+          f4: 'Responsive interface and touch controls for mobile.',
           date: 'Date: 2025 • Status: finished • License: MIT (example)',
           aside: 'Contact & links',
           gmail: '📧 Gmail',
@@ -152,16 +151,16 @@
           brand: 'Fran - Proyecto 1',
           h1: 'Proyecto 1 — Mini App de Galería',
           lead: 'Descripción definitiva: app de galería con miniaturas, modal accesible y lazy-loading. Diseñada para funcionamiento fluido en móvil y escritorio, con atención a la accesibilidad y rendimiento.',
-          features: 'Características principales',
-          f1: 'Miniaturas con navegación y selección por teclado.',
-          f2: 'Modal ampliable con controles prev/next y cierre con Esc.',
-          f3: 'Imágenes optimizadas y lazy-loading progresivo.',
-          f4: 'Interfaz responsiva y controles táctiles para móviles.',
           tech: 'Tecnologías',
           tdesc: 'HTML5, CSS3 (flex/grid), JavaScript (DOM y accesibilidad). Implementación ligera sin frameworks.',
           t1: 'HTML semántico y ARIA donde procede.',
           t2: 'CSS variables y transiciones suaves.',
           t3: 'JavaScript para modal y lazy-load.',
+          features: 'Características principales',
+          f1: 'Miniaturas con navegación y selección por teclado.',
+          f2: 'Modal ampliable con controles prev/next y cierre con Esc.',
+          f3: 'Imágenes optimizadas y lazy-loading progresivo.',
+          f4: 'Interfaz responsiva y controles táctiles para móviles.',
           date: 'Fecha: 2025 • Estado: finalizado • Licencia: MIT (ejemplo)',
           aside: 'Contacto y enlaces',
           gmail: '📧 Gmail',
@@ -186,6 +185,16 @@
       socialLinks[1] && (socialLinks[1].textContent = t.github);
       document.querySelector('footer small') && (document.querySelector('footer small').textContent = t.footer);
       document.querySelector('figcaption') && (document.querySelector('figcaption').textContent = t.figcaption);
+      document.getElementById('tech-title') && (document.getElementById('tech-title').textContent = t.tech);
+      document.getElementById('tech-desc') && (document.getElementById('tech-desc').textContent = t.tdesc);
+      document.getElementById('tech1') && (document.getElementById('tech1').textContent = t.t1);
+      document.getElementById('tech2') && (document.getElementById('tech2').textContent = t.t2);
+      document.getElementById('tech3') && (document.getElementById('tech3').textContent = t.t3);
+      document.getElementById('features-title') && (document.getElementById('features-title').textContent = t.features);
+      document.getElementById('feat1') && (document.getElementById('feat1').textContent = t.f1);
+      document.getElementById('feat2') && (document.getElementById('feat2').textContent = t.f2);
+      document.getElementById('feat3') && (document.getElementById('feat3').textContent = t.f3);
+      document.getElementById('feat4') && (document.getElementById('feat4').textContent = t.f4);
     }
     applyLangFromStorage();
     if(langToggle){

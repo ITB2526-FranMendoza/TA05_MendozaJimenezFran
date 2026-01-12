@@ -28,11 +28,11 @@
       <div class="brand-text">Fran - Proyecto 2</div>
       <nav class="topmenu" id="topmenu" aria-label="Menú principal">
         <ul>
-          <li><a href="index.html">Inicio</a></li>
-          <li><a href="proyecto1.html">Proyecto 1</a></li>
-          <li><a href="proyecto2.html">Proyecto 2</a></li>
-          <li><a href="listadoproyecto.html">Listado</a></li>
-          <li><a href="formulario.html">Contacto</a></li>
+          <li><a href="index.html" id="nav-inicio">Inicio</a></li>
+          <li><a href="proyecto1.html" id="nav-p1">Proyecto 1</a></li>
+          <li><a href="proyecto2.html" id="nav-p2">Proyecto 2</a></li>
+          <li><a href="listadoproyecto.html" id="nav-listado">Listado</a></li>
+          <li><a href="formulario.html" id="nav-contacto">Contacto</a></li>
         </ul>
       </nav>
       <div class="actions-right">
@@ -51,11 +51,11 @@
         <h3>Descripción corta</h3>
         <p>En este proyecto se exploran técnicas como animaciones CSS, respuestas a eventos del usuario y componentes reutilizables. Es un proyecto educativo para practicar JavaScript del lado del cliente.</p>
         <section>
-          <h3>Tecnologías</h3>
-          <p class="muted">HTML5 / CSS3</p>
+          <h3 id="tech-title">Tecnologías</h3>
+          <p class="muted" id="tech-desc">HTML5 / CSS3</p>
           <ul>
-            <li>JavaScript (eventos y animaciones)</li>
-            <li>Imágenes de ejemplo</li>
+            <li id="tech1">JavaScript (eventos y animaciones)</li>
+            <li id="tech2">Imágenes de ejemplo</li>
           </ul>
         </section>
         <p class="small muted" style="margin-top:8px">Fecha: 2025 • Estado: finalizado • Licencia: MIT (ejemplo)</p>
@@ -120,16 +120,21 @@
           short: 'Short description',
           shortdesc: 'This project explores techniques like CSS animations, user event responses, and reusable components. It is an educational project to practice client-side JavaScript.',
           tech: 'Technologies',
-          t1: 'HTML5 / CSS3',
-          t2: 'JavaScript (events & animations)',
-          t3: 'Sample images',
+          tdesc: 'HTML5 / CSS3',
+          t1: 'JavaScript (events & animations)',
+          t2: 'Sample images',
           aside: 'Contact & links',
           gmail: '📧 Gmail',
           github: '🐙 GitHub',
           footer: '© 2025 Fran • Project 2',
           figcaption: 'Main screenshot — interaction & animation',
           date: 'Date: 2025 • Status: finished • License: MIT (example)',
-          detail: 'View detail'
+          detail: 'View detail',
+          nav_inicio: 'Home',
+          nav_p1: 'Project 1',
+          nav_p2: 'Project 2',
+          nav_listado: 'Project list',
+          nav_contacto: 'Contact'
         },
         es: {
           title: 'Proyecto 2 - Fran',
@@ -139,16 +144,21 @@
           short: 'Descripción corta',
           shortdesc: 'En este proyecto se exploran técnicas como animaciones CSS, respuestas a eventos del usuario y componentes reutilizables. Es un proyecto educativo para practicar JavaScript del lado del cliente.',
           tech: 'Tecnologías',
-          t1: 'HTML5 / CSS3',
-          t2: 'JavaScript (eventos y animaciones)',
-          t3: 'Imágenes de ejemplo',
+          tdesc: 'HTML5 / CSS3',
+          t1: 'JavaScript (eventos y animaciones)',
+          t2: 'Imágenes de ejemplo',
           aside: 'Contacto y enlaces',
           gmail: '📧 Gmail',
           github: '🐙 GitHub',
           footer: '© 2025 Fran • Proyecto 2',
           figcaption: 'Captura principal — interacción y animación',
           date: 'Fecha: 2025 • Estado: finalizado • Licencia: MIT (ejemplo)',
-          detail: 'Ver detalle'
+          detail: 'Ver detalle',
+          nav_inicio: 'Inicio',
+          nav_p1: 'Proyecto 1',
+          nav_p2: 'Proyecto 2',
+          nav_listado: 'Listado',
+          nav_contacto: 'Contacto'
         }
       };
       const t = translations[lang] || translations.es;
@@ -174,6 +184,15 @@
       socialLinks[1] && (socialLinks[1].textContent = t.github);
       document.querySelector('footer small') && (document.querySelector('footer small').textContent = t.footer);
       document.querySelector('figcaption') && (document.querySelector('figcaption').textContent = t.figcaption);
+      document.getElementById('tech-title') && (document.getElementById('tech-title').textContent = t.tech);
+      document.getElementById('tech-desc') && (document.getElementById('tech-desc').textContent = t.tdesc);
+      document.getElementById('tech1') && (document.getElementById('tech1').textContent = t.t1);
+      document.getElementById('tech2') && (document.getElementById('tech2').textContent = t.t2);
+      document.getElementById('nav-inicio') && (document.getElementById('nav-inicio').textContent = t.nav_inicio);
+      document.getElementById('nav-p1') && (document.getElementById('nav-p1').textContent = t.nav_p1);
+      document.getElementById('nav-p2') && (document.getElementById('nav-p2').textContent = t.nav_p2);
+      document.getElementById('nav-listado') && (document.getElementById('nav-listado').textContent = t.nav_listado);
+      document.getElementById('nav-contacto') && (document.getElementById('nav-contacto').textContent = t.nav_contacto);
     }
     applyLangFromStorage();
     if(langToggle){

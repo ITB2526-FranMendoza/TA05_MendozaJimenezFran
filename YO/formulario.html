@@ -10,14 +10,14 @@
 <body>
   <header class="topbar">
     <img src="logofran.jpg" alt="Logo" class="logo-img">
-    <div class="brand-text">Fran - Contacto</div>
+    <div class="brand-text" id="brand-text">Fran - Contacto</div>
     <nav class="topmenu" id="topmenu" aria-label="Menú principal">
       <ul>
-        <li><a href="index.html">Inicio</a></li>
-        <li><a href="proyecto1.html">Proyecto 1</a></li>
-        <li><a href="proyecto2.html">Proyecto 2</a></li>
-        <li><a href="listadoproyecto.html">Listado</a></li>
-        <li><a href="formulario.html">Contacto</a></li>
+        <li><a href="index.html" id="nav-inicio">Inicio</a></li>
+        <li><a href="proyecto1.html" id="nav-p1">Proyecto 1</a></li>
+        <li><a href="proyecto2.html" id="nav-p2">Proyecto 2</a></li>
+        <li><a href="listadoproyecto.html" id="nav-listado">Listado</a></li>
+        <li><a href="formulario.html" id="nav-contacto">Contacto</a></li>
       </ul>
     </nav>
     <div class="actions-right">
@@ -79,22 +79,34 @@
       const translations = {
         en: {
           title: 'Contact form - Fran',
+          brand: 'Fran - Contact',
           heading: 'Contact form',
           desc: 'Fill the form and click send. This is a demo; it does not actually send data.',
           name: 'Your name', email: 'Your email', subject: 'Subject', message: 'Message', send: 'Send', reset: 'Reset',
-          footer: '© 2025 Fran • Contact'
+          footer: '© 2025 Fran • Contact',
+          nav_inicio: 'Home',
+          nav_p1: 'Project 1',
+          nav_p2: 'Project 2',
+          nav_listado: 'Project list',
+          nav_contacto: 'Contact',
         },
         es: {
           title: 'Formulario - Fran',
+          brand: 'Fran - Contacto',
           heading: 'Formulario de contacto',
           desc: 'Rellena el formulario y pulsa enviar. Es un ejemplo; aquí no se envía realmente nada al servidor.',
           name: 'Tu nombre', email: 'Tu correo', subject: 'Asunto', message: 'Mensaje', send: 'Enviar', reset: 'Limpiar',
-          footer: '© 2025 Fran • Contacto'
+          footer: '© 2025 Fran • Contacto',
+          nav_inicio: 'Inicio',
+          nav_p1: 'Proyecto 1',
+          nav_p2: 'Proyecto 2',
+          nav_listado: 'Listado',
+          nav_contacto: 'Contacto',
         }
       };
-
       const t = translations[lang] || translations.es;
       document.title = t.title;
+      document.getElementById('brand-text') && (document.getElementById('brand-text').textContent = t.brand);
       document.querySelector('h1') && (document.querySelector('h1').textContent = t.heading);
       document.querySelector('p.muted') && (document.querySelector('p.muted').textContent = t.desc);
       document.querySelector('label[for="name"]') && (document.querySelector('label[for="name"]').textContent = t.name);
@@ -110,6 +122,12 @@
       document.getElementById('email').placeholder = t.email;
       document.getElementById('subject').placeholder = t.subject;
       document.getElementById('message').placeholder = t.message;
+
+      document.getElementById('nav-inicio') && (document.getElementById('nav-inicio').textContent = t.nav_inicio);
+      document.getElementById('nav-p1') && (document.getElementById('nav-p1').textContent = t.nav_p1);
+      document.getElementById('nav-p2') && (document.getElementById('nav-p2').textContent = t.nav_p2);
+      document.getElementById('nav-listado') && (document.getElementById('nav-listado').textContent = t.nav_listado);
+      document.getElementById('nav-contacto') && (document.getElementById('nav-contacto').textContent = t.nav_contacto);
     }
 
     applyLangFromStorage();

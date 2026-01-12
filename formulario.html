@@ -21,10 +21,14 @@
       .topmenu a { display: block; width: 100%; text-align: left; padding: 12px 18px; font-size: 1.1em; }
       .brand-text { font-size: 1.1em; }
       .card { padding: 10px 4px; }
-      /* --- MEJORAS RESPONSIVE FORMULARIO --- */
+      /* --- MEJORAS RESPONSIVE FORMULARIO AVANZADAS --- */
+      main { padding: 0 2px !important; }
+      .card { box-shadow: none; }
       form#contactForm {
         padding: 0;
         margin: 0;
+        background: transparent;
+        box-shadow: none;
       }
       form#contactForm label {
         font-size: 1em;
@@ -37,9 +41,17 @@
         min-width: 0;
         box-sizing: border-box;
         font-size: 1em;
-        padding: 12px 10px;
-        margin-bottom: 10px;
-        border-radius: 6px;
+        padding: 14px 12px;
+        margin-bottom: 12px;
+        border-radius: 8px;
+        border: 1.5px solid #dbeafe;
+        background: #fff;
+      }
+      body.oscuro form#contactForm input,
+      body.oscuro form#contactForm textarea {
+        background: #0b1220;
+        color: #e6eef8;
+        border: 1.5px solid #23304a;
       }
       form#contactForm textarea {
         resize: vertical;
@@ -48,19 +60,13 @@
       .form-actions {
         display: flex;
         flex-direction: column;
-        gap: 10px;
+        gap: 12px;
         margin-top: 18px;
       }
       .form-actions .btn {
         width: 100%;
         font-size: 1.1em;
-        padding: 14px 0;
-      }
-      .card {
-        box-shadow: none;
-      }
-      main {
-        padding: 0 2px !important;
+        padding: 16px 0;
       }
     }
     /* Mejoras generales para inputs y botones en todos los tamaños */
@@ -69,16 +75,17 @@
       width: 100%;
       box-sizing: border-box;
       margin-bottom: 12px;
+      font-size: 1.05em;
     }
     .form-actions {
       display: flex;
-      gap: 12px;
+      gap: 14px;
       margin-top: 18px;
       justify-content: flex-start;
     }
     .form-actions .btn {
       min-width: 120px;
-      padding: 12px 0;
+      padding: 14px 0;
       font-size: 1em;
     }
   </style>

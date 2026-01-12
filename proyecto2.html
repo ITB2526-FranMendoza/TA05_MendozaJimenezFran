@@ -19,23 +19,29 @@
         .topmenu li { width: 100%; }
         .topmenu a { display: block; width: 100%; text-align: left; padding: 12px 18px; }
         .actions-right { margin-top: 10px; }
-        .project-layout { flex-direction: column !important; }
+        .project-layout { flex-direction: column !important; display: flex !important; }
         .project-media, .project-info { width: 100% !important; }
       }
-      @media (max-width:780px){
-        .project-layout{flex-direction:column}
-        .project-media,.project-info{width:100%;flex:0 0 auto}
-        .preview-thumbs img{width:calc(33.333% - 5.33px)}
-      }
-      @media (max-width:600px){
+      @media (max-width:700px){
         .topbar, .topmenu ul { flex-direction: column !important; align-items: stretch !important; }
         .topmenu ul { gap: 0.5em; }
         .topmenu li { width: 100%; }
         .topmenu a { display: block; width: 100%; text-align: left; padding: 12px 18px; font-size: 1.1em; }
         .brand-text { font-size: 1.1em; }
-        .project-layout { flex-direction: column !important; }
-        .project-media, .project-info { width: 100% !important; }
         .card { padding: 10px 4px; }
+        .project-layout { flex-direction: column !important; display: flex !important; }
+        .project-media, .project-info { width: 100% !important; }
+        .project-media img, .preview-thumbs img { width: 100% !important; min-width: 0; max-width: 100%; height: auto; }
+        .preview-thumbs { flex-wrap: wrap; gap: 6px; }
+        .preview-thumbs img { width: 48% !important; margin-bottom: 6px; }
+        .actions-right { margin-top: 10px; }
+        .topmenu { padding-bottom: 8px; }
+      }
+      @media (max-width:500px){
+        .brand-text { font-size: 1em; }
+        .card { padding: 6px 2px; }
+        .project-layout { gap: 8px; }
+        .project-media img, .preview-thumbs img { border-radius: 6px; }
       }
     </style>
 </head>

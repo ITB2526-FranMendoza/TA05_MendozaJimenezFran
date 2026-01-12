@@ -21,6 +21,65 @@
       .topmenu a { display: block; width: 100%; text-align: left; padding: 12px 18px; font-size: 1.1em; }
       .brand-text { font-size: 1.1em; }
       .card { padding: 10px 4px; }
+      /* --- MEJORAS RESPONSIVE FORMULARIO --- */
+      form#contactForm {
+        padding: 0;
+        margin: 0;
+      }
+      form#contactForm label {
+        font-size: 1em;
+        margin-bottom: 4px;
+        margin-top: 12px;
+      }
+      form#contactForm input,
+      form#contactForm textarea {
+        width: 100% !important;
+        min-width: 0;
+        box-sizing: border-box;
+        font-size: 1em;
+        padding: 12px 10px;
+        margin-bottom: 10px;
+        border-radius: 6px;
+      }
+      form#contactForm textarea {
+        resize: vertical;
+        min-height: 120px;
+      }
+      .form-actions {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        margin-top: 18px;
+      }
+      .form-actions .btn {
+        width: 100%;
+        font-size: 1.1em;
+        padding: 14px 0;
+      }
+      .card {
+        box-shadow: none;
+      }
+      main {
+        padding: 0 2px !important;
+      }
+    }
+    /* Mejoras generales para inputs y botones en todos los tamaños */
+    form#contactForm input,
+    form#contactForm textarea {
+      width: 100%;
+      box-sizing: border-box;
+      margin-bottom: 12px;
+    }
+    .form-actions {
+      display: flex;
+      gap: 12px;
+      margin-top: 18px;
+      justify-content: flex-start;
+    }
+    .form-actions .btn {
+      min-width: 120px;
+      padding: 12px 0;
+      font-size: 1em;
     }
   </style>
 </head>
